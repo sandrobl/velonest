@@ -247,7 +247,14 @@
                 localStorage.setItem(LANGUAGE_STORAGE_KEY, fallbackLang);
             };
 
-            const storedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'en';
+            const getBrowserLanguage = () => {
+                const preferred = [...(navigator.languages || []), navigator.language]
+                    .filter(Boolean)
+                    .map((lang) => lang.slice(0, 2).toLowerCase());
+                return preferred.find((code) => translations[code]) || 'en';
+            };
+
+            const storedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || getBrowserLanguage();
             applyLanguage(storedLang);
 
             languageButtons.forEach((btn) => {
