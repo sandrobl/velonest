@@ -7,38 +7,156 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>VeloNest</h1>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="#top">
+                <img src="img/logo.png" alt="VeloNest logo" />
+                <span>VeloNest</span>
+            </a>
+            <div class="nav-actions">
+                <a class="nav-link" href="#hypotheses">What we're testing</a>
+                <a class="nav-link" href="#approach">How it works</a>
+                <a class="button button-primary" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Register interest</a>
+            </div>
         </nav>
     </header>
-    
-    <main>
+
+    <main id="top">
         <section class="hero">
-            <h2>Welcome to VeloNest</h2>
-            <p>Your cycling companion for tracking routes, performance, and adventures.</p>
+            <div class="hero-copy">
+                <p class="eyebrow">Upcoming app · Early access waitlist</p>
+                <h1>Find reliable bike parking before you arrive.</h1>
+                <p class="hero-text">VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Count me in</a>
+                    <a class="button button-secondary" href="#value">Why it matters</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="img/velonest_overview1.png" alt="Preview of the VeloNest parking map" />
+            </div>
         </section>
-        
-        <section class="features">
-            <div class="feature-card">
-                <h3>Track Your Rides</h3>
-                <p>Monitor your cycling performance and progress over time.</p>
+
+        <section class="value" id="value">
+            <div class="section-header">
+                <h2>Why riders asked for VeloNest</h2>
+                <p>Every minute saved finding a secure spot means more time on the bike.</p>
             </div>
-            
-            <div class="feature-card">
-                <h3>Discover Routes</h3>
-                <p>Find new cycling paths and share your favorite routes with the community.</p>
+            <div class="value-grid">
+                <article class="card">
+                    <h3>Parking in seconds</h3>
+                    <p>Discover verified bike parking locations near your destination without the street-by-street search.</p>
+                </article>
+                <article class="card">
+                    <h3>Confidence to explore</h3>
+                    <p>Know what to expect with photos, capacity and safety notes contributed by early power users.</p>
+                </article>
+                <article class="card">
+                    <h3>Community powered data</h3>
+                    <p>Blend public datasets with cyclist insights so the map stays fresh even in new neighbourhoods.</p>
+                </article>
             </div>
-            
-            <div class="feature-card">
-                <h3>Join the Community</h3>
-                <p>Connect with fellow cyclists and share your experiences.</p>
+        </section>
+
+        <section class="hypotheses" id="hypotheses">
+            <div class="section-header">
+                <h2>What we're validating right now</h2>
+                <p>Your feedback will tell us if we're solving the right problems for city cyclists.</p>
+            </div>
+            <div class="hypotheses-grid">
+                <article class="card">
+                    <h3>Is the value obvious?</h3>
+                    <p>We believe riders feel immediate value when they can quickly spot new bicycle parking options wherever they ride.</p>
+                </article>
+                <article class="card">
+                    <h3>Can we solve the chicken-and-egg?</h3>
+                    <p>We're testing whether importing existing open data plus rewarding early adopters with perks can kickstart a vibrant parking map.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="approach" id="approach">
+            <div class="approach-grid">
+                <div class="approach-copy">
+                    <h2>Our path to launch</h2>
+                    <ul>
+                        <li>Import trusted municipal and open mobility datasets to seed every city with a base layer.</li>
+                        <li>Invite passionate cyclists to contribute photos, availability notes, and hidden gems.</li>
+                        <li>Reward early supporters with priority feature access and in-app recognition.</li>
+                    </ul>
+                    <a class="button button-primary" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Join the early rider list</a>
+                </div>
+                <div class="approach-visual">
+                    <img src="img/velonest_single_location.png" alt="Detailed view of a VeloNest parking spot" />
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-card">
+                <h2>Help shape the future of urban cycling</h2>
+                <p>Enter your interest and tell us where you need better parking support. We’ll send occasional updates and invite you to early betas.</p>
+                <a class="button button-light" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Share my needs</a>
             </div>
         </section>
     </main>
-    
+
     <footer>
-        <p>&copy; 2024 VeloNest. Happy cycling!</p>
+        <p>&copy; 2025 VeloNest. Made by cyclists, for cyclists.</p>
     </footer>
+
+    <script>
+        const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+        const targetSections = navLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        const clearActive = () => navLinks.forEach((link) => link.classList.remove('active'));
+
+        const setActiveLink = (id) => {
+            navLinks.forEach((link) => {
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        };
+
+        const handleScroll = () => {
+            const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+            const scrollPosition = window.scrollY + headerHeight + 40;
+
+            let currentId = null;
+            targetSections.forEach((section) => {
+                const { top, height } = section.getBoundingClientRect();
+                const sectionTop = window.scrollY + top;
+                const sectionBottom = sectionTop + height;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentId = section.id;
+                }
+            });
+
+            if (currentId) {
+                setActiveLink(currentId);
+            } else {
+                clearActive();
+            }
+        };
+
+        const rafHandleScroll = () => window.requestAnimationFrame(handleScroll);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScroll();
+            window.addEventListener('scroll', rafHandleScroll);
+            window.addEventListener('resize', rafHandleScroll);
+            navLinks.forEach((link) => {
+                link.addEventListener('click', () => {
+                    window.setTimeout(handleScroll, 300);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
