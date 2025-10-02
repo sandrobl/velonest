@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VeloNest</title>
+    <title>VeloNest — Find reliable bike parking</title>
+    <meta name="description"
+        content="VeloNest helps cyclists quickly find reliable bicycle parking with photos, capacity and community notes. Available on iOS and Android.">
+    <link rel="canonical" href="/">
+    <link rel="preconnect" href="https://matomo.2103.ch" crossorigin>
+    <meta property="og:title" content="VeloNest — Find reliable bike parking">
+    <meta property="og:description" content="Find secure bicycle parking before you arrive. iOS & Android.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/velonest_overview1.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['enableHeartBeatTimer', 15]);
+        _paq.push(['setDocumentTitle', document.title]);
+        _paq.push(['enableLinkTracking']);
+        _paq.push(['trackPageView']);
+        (function () {
+            var u = "https://matomo.2103.ch/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '20']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+        window.trackEvent = function (category, action, name, value) { try { _paq.push(['trackEvent', category, action, name, value]); } catch (e) { } };
+    </script>
+    <!-- End Matomo Code -->
 </head>
+
 <body>
     <header class="site-header">
         <nav class="nav">
@@ -14,13 +42,15 @@
                 <span>VeloNest</span>
             </a>
             <div class="nav-actions">
-                <a class="nav-link" data-i18n="nav.testing" href="#hypotheses">What we're testing</a>
+                <a class="nav-link" data-i18n="nav.features" href="#value">Features</a>
+                <a class="nav-link" data-i18n="nav.reviews" href="#reviews">Reviews</a>
                 <a class="nav-link" data-i18n="nav.approach" href="#approach">How it works</a>
                 <div class="language-switch" role="group" aria-label="Language selector">
                     <button type="button" class="language-button active" data-lang="en" aria-pressed="true">EN</button>
                     <button type="button" class="language-button" data-lang="de" aria-pressed="false">DE</button>
                 </div>
-                <a class="button button-primary" data-i18n="nav.cta" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Register interest</a>
+                <a id="download-cta-nav" class="button button-primary" data-i18n="nav.cta" href="download.html">Download
+                    app</a>
             </div>
         </nav>
     </header>
@@ -28,97 +58,136 @@
     <main id="top">
         <section class="hero">
             <div class="hero-copy">
-                <p class="eyebrow" data-i18n="hero.eyebrow">Upcoming app · Early access waitlist</p>
+                <p class="eyebrow" data-i18n="hero.eyebrow">Now available · iOS & Android</p>
                 <h1 data-i18n="hero.heading">Find reliable bike parking before you arrive.</h1>
-                <p class="hero-text" data-i18n="hero.copy">VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.</p>
+                <p class="hero-text" data-i18n="hero.copy">VeloNest shows nearby bicycle parking spots in seconds so you
+                    can stop circling the block and start exploring sooner.</p>
                 <div class="hero-actions">
-                    <a class="button button-primary" data-i18n="hero.primary" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Count me in</a>
+                    <a id="download-cta" class="button button-primary" data-i18n="hero.primary"
+                        href="download.html">Download the app</a>
                     <a class="button button-secondary" data-i18n="hero.secondary" href="#value">Why it matters</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <img src="img/velonest_overview1.png" alt="Preview of the VeloNest parking map" />
+                <div class="phone-frame phone--portrait">
+                    <div class="phone-screen-mask">
+                        <img class="phone-screen" src="img/velonest_overview1.png"
+                            alt="Preview of the VeloNest parking map" />
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="value" id="value">
             <div class="section-header">
                 <h2 data-i18n="value.heading">Why riders asked for VeloNest</h2>
-                <p data-i18n="value.subheading">Every minute saved finding a secure spot means more time on the bike.</p>
+                <p data-i18n="value.subheading">Every minute saved finding a secure spot means more time on the bike.
+                </p>
             </div>
             <div class="value-grid">
                 <article class="card">
                     <h3 data-i18n="value.card1.title">Parking in seconds</h3>
-                    <p data-i18n="value.card1.copy">Discover verified bike parking locations near your destination without the street-by-street search.</p>
+                    <p data-i18n="value.card1.copy">Discover verified bike parking locations near your destination
+                        without the street-by-street search.</p>
                 </article>
                 <article class="card">
                     <h3 data-i18n="value.card2.title">Confidence to explore</h3>
-                    <p data-i18n="value.card2.copy">Know what to expect with photos, capacity and safety notes contributed by early power users.</p>
+                    <p data-i18n="value.card2.copy">Know what to expect with photos, capacity and safety notes
+                        contributed by early power users.</p>
                 </article>
                 <article class="card">
                     <h3 data-i18n="value.card3.title">Community powered data</h3>
-                    <p data-i18n="value.card3.copy">Blend public datasets with cyclist insights so the map stays fresh even in new neighbourhoods.</p>
+                    <p data-i18n="value.card3.copy">Blend public datasets with cyclist insights so the map stays fresh
+                        even in new neighbourhoods.</p>
                 </article>
             </div>
         </section>
 
-        <section class="hypotheses" id="hypotheses">
+        <section class="reviews" id="reviews">
             <div class="section-header">
-                <h2 data-i18n="hypotheses.heading">What we're validating right now</h2>
-                <p data-i18n="hypotheses.subheading">Your feedback will tell us if we're solving the right problems for city cyclists.</p>
+                <h2 data-i18n="reviews.heading">Loved by city cyclists</h2>
+                <p data-i18n="reviews.subheading">Real riders share how VeloNest saves time and stress on every trip.
+                </p>
             </div>
-            <div class="hypotheses-grid">
-                <article class="card">
-                    <h3 data-i18n="hypotheses.card1.title">Is the value obvious?</h3>
-                    <p data-i18n="hypotheses.card1.copy">We believe riders feel immediate value when they can quickly spot new bicycle parking options wherever they ride.</p>
-                </article>
-                <article class="card">
-                    <h3 data-i18n="hypotheses.card2.title">Can we solve the chicken-and-egg?</h3>
-                    <p data-i18n="hypotheses.card2.copy">We're testing whether importing existing open data plus rewarding early adopters with perks can kickstart a vibrant parking map.</p>
-                </article>
+            <div class="reviews-grid">
+                <figure class="review-card">
+                    <img src="img/person1.jpg" alt="Rider portrait" loading="lazy">
+                    <blockquote data-i18n="reviews.card1.copy">I used to circle for 10 minutes near the office. Now I
+                        roll straight to a safe rack I trust.</blockquote>
+                    <figcaption><span class="reviewer" data-i18n="reviews.card1.author">Maya, Zurich</span></figcaption>
+                </figure>
+                <figure class="review-card">
+                    <img src="img/person2.jpg" alt="Rider portrait" loading="lazy">
+                    <blockquote data-i18n="reviews.card2.copy">The photos and notes are gold. I know exactly where my
+                        cargo bike fits.</blockquote>
+                    <figcaption><span class="reviewer" data-i18n="reviews.card2.author">Jonas, Basel</span></figcaption>
+                </figure>
+                <figure class="review-card">
+                    <img src="img/person3.jpg" alt="Rider portrait" loading="lazy">
+                    <blockquote data-i18n="reviews.card3.copy">I’m discovering new neighborhoods because parking isn’t a
+                        worry anymore.</blockquote>
+                    <figcaption><span class="reviewer" data-i18n="reviews.card3.author">Elena, Bern</span></figcaption>
+                </figure>
+                <figure class="review-card">
+                    <img src="img/person4.jpg" alt="Rider portrait" loading="lazy">
+                    <blockquote data-i18n="reviews.card4.copy">Fast, clear, and community powered. Exactly what cyclists
+                        needed.</blockquote>
+                    <figcaption><span class="reviewer" data-i18n="reviews.card4.author">Marco, Winterthur</span>
+                    </figcaption>
+                </figure>
             </div>
         </section>
 
         <section class="approach" id="approach">
             <div class="approach-grid">
                 <div class="approach-copy">
-                    <h2 data-i18n="approach.heading">Our path to launch</h2>
+                    <h2 data-i18n="approach.heading">How VeloNest works</h2>
                     <ul>
-                        <li data-i18n="approach.list1">Import trusted municipal and open mobility datasets to seed every city with a base layer.</li>
-                        <li data-i18n="approach.list2">Invite passionate cyclists to contribute photos, availability notes, and hidden gems.</li>
-                        <li data-i18n="approach.list3">Reward early supporters with priority feature access and in-app recognition.</li>
+                        <li data-i18n="approach.list1">Blend trusted city data with community updates to keep parking
+                            info fresh.</li>
+                        <li data-i18n="approach.list2">See photos, capacity and safety notes at a glance before you
+                            arrive.</li>
+                        <li data-i18n="approach.list3">Navigate directly to a reliable spot and save your favorites.
+                        </li>
                     </ul>
-                    <a class="button button-primary" data-i18n="approach.cta" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Join the early rider list</a>
+                    <a class="button button-light" data-i18n="approach.cta" href="download.html">Get VeloNest</a>
                 </div>
                 <div class="approach-visual">
-                    <img src="img/velonest_single_location.png" alt="Detailed view of a VeloNest parking spot" />
+                    <div class="phone-frame phone--portrait phone--small">
+                        <div class="phone-screen-mask">
+                            <img class="phone-screen" src="img/velonest_single_location.png"
+                                alt="Detailed view of a VeloNest parking spot" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="cta">
             <div class="cta-card">
-                <h2 data-i18n="cta.heading">Help shape the future of urban cycling</h2>
-                <p data-i18n="cta.copy">Enter your interest and tell us where you need better parking support. We’ll send occasional updates and invite you to early betas.</p>
-                <a class="button button-light" data-i18n="cta.button" href="https://forms.cloud.microsoft/e/VrXXtNqBNs" target="_blank" rel="noopener noreferrer">Share my needs</a>
+                <h2 data-i18n="cta.heading">Ready to ride smarter?</h2>
+                <p data-i18n="cta.copy">Download VeloNest to find reliable bicycle parking in seconds—wherever you go.
+                </p>
+                <a class="button button-light" data-i18n="cta.button" href="download.html">Download now</a>
             </div>
         </section>
     </main>
 
     <footer>
-    <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
+        <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
     </footer>
 
     <script>
         const translations = {
             en: {
-                'nav.testing': "What we're testing",
+                'nav.features': 'Features',
+                'nav.reviews': 'Reviews',
                 'nav.approach': 'How it works',
-                'nav.cta': 'Register interest',
-                'hero.eyebrow': 'Upcoming app · Early access waitlist',
+                'nav.cta': 'Download app',
+                'hero.eyebrow': 'Now available · iOS & Android',
                 'hero.heading': 'Find reliable bike parking before you arrive.',
                 'hero.copy': 'VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.',
-                'hero.primary': 'Count me in',
+                'hero.primary': 'Download the app',
                 'hero.secondary': 'Why it matters',
                 'value.heading': 'Why riders asked for VeloNest',
                 'value.subheading': 'Every minute saved finding a secure spot means more time on the bike.',
@@ -128,53 +197,62 @@
                 'value.card2.copy': 'Know what to expect with photos, capacity and safety notes contributed by early power users.',
                 'value.card3.title': 'Community powered data',
                 'value.card3.copy': 'Blend public datasets with cyclist insights so the map stays fresh even in new neighbourhoods.',
-                'hypotheses.heading': "What we're validating right now",
-                'hypotheses.subheading': "Your feedback will tell us if we're solving the right problems for city cyclists.",
-                'hypotheses.card1.title': 'Is the value obvious?',
-                'hypotheses.card1.copy': 'We believe riders feel immediate value when they can quickly spot new bicycle parking options wherever they ride.',
-                'hypotheses.card2.title': 'Can we solve the chicken-and-egg?',
-                'hypotheses.card2.copy': "We're testing whether importing existing open data plus rewarding early adopters with perks can kickstart a vibrant parking map.",
-                'approach.heading': 'Our path to launch',
-                'approach.list1': 'Import trusted municipal and open mobility datasets to seed every city with a base layer.',
-                'approach.list2': 'Invite passionate cyclists to contribute photos, availability notes, and hidden gems.',
-                'approach.list3': 'Reward early supporters with priority feature access and in-app recognition.',
-                'approach.cta': 'Join the early rider list',
-                'cta.heading': 'Help shape the future of urban cycling',
-                'cta.copy': "Enter your interest and tell us where you need better parking support. We’ll send occasional updates and invite you to early betas.",
-                'cta.button': 'Share my needs',
+                'reviews.heading': 'Loved by city cyclists',
+                'reviews.subheading': 'Real riders share how VeloNest saves time and stress on every trip.',
+                'reviews.card1.copy': 'I used to circle for 10 minutes near the office. Now I roll straight to a safe rack I trust.',
+                'reviews.card1.author': 'Maya, Zurich',
+                'reviews.card2.copy': 'The photos and notes are gold. I know exactly where my cargo bike fits.',
+                'reviews.card2.author': 'Jonas, Basel',
+                'reviews.card3.copy': 'I’m discovering new neighborhoods because parking isn’t a worry anymore.',
+                'reviews.card3.author': 'Elena, Bern',
+                'reviews.card4.copy': 'Fast, clear, and community powered. Exactly what cyclists needed.',
+                'reviews.card4.author': 'Marco, Winterthur',
+                'approach.heading': 'How VeloNest works',
+                'approach.list1': 'Blend trusted city data with community updates to keep parking info fresh.',
+                'approach.list2': 'See photos, capacity and safety notes at a glance before you arrive.',
+                'approach.list3': 'Navigate directly to a reliable spot and save your favorites.',
+                'approach.cta': 'Get VeloNest',
+                'cta.heading': 'Ready to ride smarter?',
+                'cta.copy': 'Download VeloNest to find reliable bicycle parking in seconds—wherever you go.',
+                'cta.button': 'Download now',
                 'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
             },
             de: {
-                'nav.testing': 'Was wir testen',
+                'nav.features': 'Funktionen',
+                'nav.reviews': 'Stimmen',
                 'nav.approach': 'So funktioniert es',
-                'nav.cta': 'Interesse bekunden',
-                'hero.eyebrow': 'In Kürze · Warteliste für frühen Zugang',
+                'nav.cta': 'App herunterladen',
+                'hero.eyebrow': 'Jetzt verfügbar · iOS & Android',
                 'hero.heading': 'Finde verlässliche Fahrradparkplätze, bevor du ankommst.',
                 'hero.copy': 'VeloNest zeigt dir in Sekunden nahegelegene Fahrradstellplätze, damit du nicht länger im Kreis fährst, sondern schneller loslegst.',
-                'hero.primary': 'Ich bin dabei',
+                'hero.primary': 'App herunterladen',
                 'hero.secondary': 'Warum das wichtig ist',
                 'value.heading': 'Warum Radfahrer VeloNest wollten',
                 'value.subheading': 'Jede gesparte Minute bei der Parkplatzsuche bedeutet mehr Zeit auf dem Rad.',
                 'value.card1.title': 'Parkplätze in Sekunden',
-                'value.card1.copy': 'Finde verifizierte Fahrradstellplätze in der Nähe deines Ziels, ohne mühsame Straßensuche.',
+                'value.card1.copy': 'Finde verifizierte Fahrradstellplätze in der Nähe deines Ziels, ohne mühsame Strassensuche.',
                 'value.card2.title': 'Mit Vertrauen entdecken',
                 'value.card2.copy': 'Erfahre vorab dank Fotos, Kapazitäts- und Sicherheitsnotizen, was dich erwartet – geliefert von unseren ersten Power-Usern.',
                 'value.card3.title': 'Community-gestützte Daten',
                 'value.card3.copy': 'Kombiniere öffentliche Datensätze mit Insights von Radfahrern, damit die Karte selbst in neuen Vierteln aktuell bleibt.',
-                'hypotheses.heading': 'Was wir gerade validieren',
-                'hypotheses.subheading': 'Dein Feedback zeigt uns, ob wir die richtigen Probleme von Stadtradlern lösen.',
-                'hypotheses.card1.title': 'Ist der Mehrwert sofort sichtbar?',
-                'hypotheses.card1.copy': 'Wir glauben, dass Fahrer sofortigen Nutzen spüren, wenn sie schnell neue Fahrradparkoptionen entdecken können – egal wo sie unterwegs sind.',
-                'hypotheses.card2.title': 'Lösen wir das Henne-Ei-Problem?',
-                'hypotheses.card2.copy': 'Wir testen, ob der Import offener Daten kombiniert mit Belohnungen für Early Adopters eine lebendige Parkplatzkarte zum Leben erweckt.',
-                'approach.heading': 'Unser Weg zum Launch',
-                'approach.list1': 'Importiere verlässliche kommunale und offene Mobilitätsdaten, um jede Stadt mit einer Basiskarte zu starten.',
-                'approach.list2': 'Lade engagierte Radfahrer ein, Fotos, Verfügbarkeitsnotizen und versteckte Perlen beizusteuern.',
-                'approach.list3': 'Belohne frühe Unterstützer mit priorisiertem Funktionszugang und Anerkennung in der App.',
-                'approach.cta': 'Zur Early-Rider-Liste',
-                'cta.heading': 'Gestalte die Zukunft des urbanen Radfahrens',
-                'cta.copy': 'Trage dein Interesse ein und sag uns, wo du bessere Parkmöglichkeiten brauchst. Wir schicken gelegentlich Updates und laden dich zu frühen Betas ein.',
-                'cta.button': 'Meine Wünsche teilen',
+                'reviews.heading': 'Geliebt von Stadtradlern',
+                'reviews.subheading': 'Echte Fahrer erzählen, wie VeloNest Zeit und Nerven spart.',
+                'reviews.card1.copy': 'Früher drehte ich 10 Minuten Runden am Büro. Jetzt fahre ich direkt zu einem sicheren Bügel, dem ich vertraue.',
+                'reviews.card1.author': 'Maya, Zürich',
+                'reviews.card2.copy': 'Die Fotos und Hinweise sind Gold wert. Ich weiss genau, wo mein Lastenrad passt.',
+                'reviews.card2.author': 'Jonas, Basel',
+                'reviews.card3.copy': 'Ich entdecke neue Viertel, weil Parkplatzsuche kein Thema mehr ist.',
+                'reviews.card3.author': 'Elena, Bern',
+                'reviews.card4.copy': 'Schnell, klar und community-getrieben. Genau was Radler brauchen.',
+                'reviews.card4.author': 'Marco, Winterthur',
+                'approach.heading': 'So funktioniert VeloNest',
+                'approach.list1': 'Kombiniere verlässliche städtische Daten mit Community-Updates – so bleiben Infos frisch.',
+                'approach.list2': 'Sieh Fotos, Kapazität und Sicherheitshinweise schon bevor du ankommst.',
+                'approach.list3': 'Navigiere direkt zu einem verlässlichen Platz und speichere Favoriten.',
+                'approach.cta': 'VeloNest holen',
+                'cta.heading': 'Bereit für smarteres Radfahren?',
+                'cta.copy': 'Lade VeloNest herunter und finde zuverlässige Fahrradparkplätze in Sekunden – überall.',
+                'cta.button': 'Jetzt herunterladen',
                 'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
             }
         };
@@ -272,7 +350,14 @@
                     window.setTimeout(handleScroll, 300);
                 });
             });
+
+            // Track download CTA clicks with Matomo
+            const ctaButtons = [document.getElementById('download-cta'), document.getElementById('download-cta-nav')].filter(Boolean);
+            ctaButtons.forEach(btn => btn.addEventListener('click', () => {
+                if (window.trackEvent) window.trackEvent('CTA', 'click', 'download_app');
+            }));
         });
     </script>
 </body>
+
 </html>

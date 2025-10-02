@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeloNest — Add a parking spot</title>
+  <meta name="description"
+    content="Help unlock VeloNest in your area. Add a bike parking spot on the map and share a few details to continue.">
+  <link rel="canonical" href="/add-spot.html">
+  <link rel="preconnect" href="https://matomo.2103.ch" crossorigin>
+  <meta property="og:title" content="VeloNest — Add a parking spot">
+  <meta property="og:description" content="Add a parking spot on the map and continue.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['enableHeartBeatTimer', 15]);
+    _paq.push(['setDocumentTitle', document.title]);
+    _paq.push(['enableLinkTracking']);
+    _paq.push(['trackPageView']);
+    (function () {
+      var u = "https://matomo.2103.ch/";
+      _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      _paq.push(['setSiteId', '20']);
+      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+      g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+    })();
+    window.trackEvent = function (category, action, name, value) { try { _paq.push(['trackEvent', category, action, name, value]); } catch (e) { } };
+  </script>
+  <!-- End Matomo Code -->
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="img/logo.png" alt="VeloNest logo" />
+        <span>VeloNest</span>
+      </a>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="language-button active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="language-button" data-lang="de" aria-pressed="false">DE</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-card">
+      <div class="section-header">
+        <h1 data-i18n="add.heading">Help VeloNest launch sooner</h1>
+        <p class="muted" data-i18n="add.subheading">The app isn’t live yet because we’re still collecting parking data.
+          Add one spot on the map and share a few details to continue.</p>
+      </div>
+      <div class="two-col-grid">
+        <div>
+          <div class="search-bar">
+            <label for="search" class="muted" data-i18n="add.search.label">Search address</label>
+            <div class="search-row">
+              <input id="search" class="input search-input" type="search" data-i18n-placeholder="add.search.placeholder"
+                placeholder="Enter a place, street or city" autocomplete="off">
+              <button id="search-btn" type="button" class="button button-secondary" data-i18n="add.search.button"
+                aria-label="Search">Search</button>
+            </div>
+            <div class="powered-by" data-i18n="add.search.powered">Results by OpenStreetMap</div>
+          </div>
+          <p id="mapHint" class="hint muted" data-i18n="add.map.hint">Click the map to select the bike parking location.
+            Use search to find an address.</p>
+          <div id="map" class="map-container" role="application" aria-label="Map"></div>
+          <p id="mapError" class="error-text" hidden data-i18n="add.map.error">Please select a location on the map.</p>
+        </div>
+        <form id="spotForm" novalidate>
+          <div class="field">
+            <label for="type" class="muted" data-i18n="add.type.label">Parking type</label>
+            <select id="type" class="input select" required>
+              <option value="" data-i18n="add.type.placeholder">Select type…</option>
+              <option value="rack" data-i18n="add.type.rack">Rack/Stand</option>
+              <option value="box" data-i18n="add.type.box">Bike box</option>
+              <option value="room" data-i18n="add.type.room">Bike room</option>
+              <option value="other" data-i18n="add.type.other">Other</option>
+            </select>
+            <p id="typeError" class="error-text" hidden data-i18n="add.type.error">Please choose a parking type.</p>
+          </div>
+          <div class="field">
+            <label for="capacity" class="muted" data-i18n="add.capacity.label">Capacity (bikes)</label>
+            <input id="capacity" type="number" min="1" step="1" class="input" placeholder="4">
+          </div>
+          <div class="field">
+            <span class="muted" data-i18n="add.coverage.label">Coverage</span>
+            <div class="checkbox-group">
+              <label><input id="covered" type="checkbox"> <span data-i18n="add.coverage.covered">Covered</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="muted" data-i18n="add.security.label">Security features</span>
+            <div class="checkbox-group">
+              <label><input type="checkbox" value="cctv"> <span data-i18n="add.security.cctv">CCTV</span></label>
+              <label><input type="checkbox" value="lighting"> <span
+                  data-i18n="add.security.lighting">Lighting</span></label>
+              <label><input type="checkbox" value="traffic"> <span data-i18n="add.security.traffic">High foot
+                  traffic</span></label>
+              <label><input type="checkbox" value="lockers"> <span
+                  data-i18n="add.security.lockers">Lockers</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="photo" class="muted" data-i18n="add.photo.label">Photo (optional)</label>
+            <input id="photo" type="file" accept="image/*" class="input">
+          </div>
+          <div class="field">
+            <label for="notes" class="muted" data-i18n="add.notes.label">Notes</label>
+            <textarea id="notes" class="input textarea" rows="3" placeholder=""></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="form-actions">
+        <button id="reset" class="button button-secondary" type="button" data-i18n="add.reset">Reset</button>
+        <a id="continue" class="button button-primary" href="#" aria-disabled="true"
+          data-i18n="add.continue">Continue</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script>
+    const translations = {
+      en: {
+        'add.heading': 'Help VeloNest launch sooner',
+        'add.subheading': 'The app isn’t live yet because we’re still collecting parking data. Add one spot on the map and share a few details to continue.',
+        'add.reset': 'Reset',
+        'add.continue': 'Continue',
+        'add.type.label': 'Parking type',
+        'add.type.placeholder': 'Select type…',
+        'add.type.rack': 'Rack/Stand',
+        'add.type.box': 'Bike box',
+        'add.type.room': 'Bike room',
+        'add.type.other': 'Other',
+        'add.capacity.label': 'Capacity (bikes)',
+        'add.coverage.label': 'Coverage',
+        'add.coverage.covered': 'Covered',
+        'add.security.label': 'Security features',
+        'add.security.cctv': 'CCTV',
+        'add.security.lighting': 'Lighting',
+        'add.security.traffic': 'High foot traffic',
+        'add.security.lockers': 'Lockers',
+        'add.photo.label': 'Photo (optional)',
+        'add.notes.label': 'Notes',
+        'add.search.label': 'Search address',
+        'add.search.placeholder': 'Enter a place, street or city',
+        'add.search.button': 'Search',
+        'add.search.powered': 'Results by OpenStreetMap',
+        'add.search.recommended': 'Recommended',
+        'add.map.hint': 'Click the map to select the bike parking location. Use search to find an address.',
+        'add.map.error': 'Please select a location on the map.',
+        'add.type.error': 'Please choose a parking type.',
+        'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
+      },
+      de: {
+        'add.heading': 'Hilf VeloNest früher zu starten',
+        'add.subheading': 'Die App ist noch nicht live, weil uns Daten fehlen. Setze einen Punkt auf der Karte und ergänze ein paar Details, um fortzufahren.',
+        'add.reset': 'Zurücksetzen',
+        'add.continue': 'Weiter',
+        'add.type.label': 'Art des Parkplatzes',
+        'add.type.placeholder': 'Typ auswählen…',
+        'add.type.rack': 'Bügel/Ständer',
+        'add.type.box': 'Fahrradbox',
+        'add.type.room': 'Fahrradraum',
+        'add.type.other': 'Sonstiges',
+        'add.capacity.label': 'Kapazität (Räder)',
+        'add.coverage.label': 'Überdachung',
+        'add.coverage.covered': 'Überdacht',
+        'add.security.label': 'Sicherheitsmerkmale',
+        'add.security.cctv': 'Videoüberwachung',
+        'add.security.lighting': 'Beleuchtung',
+        'add.security.traffic': 'Viel Publikumsverkehr',
+        'add.security.lockers': 'Schliessfächer',
+        'add.photo.label': 'Foto (optional)',
+        'add.notes.label': 'Hinweise',
+        'add.search.label': 'Adresse suchen',
+        'add.search.placeholder': 'Ort, Strasse oder Stadt eingeben',
+        'add.search.button': 'Suchen',
+        'add.search.powered': 'Ergebnisse von OpenStreetMap',
+        'add.search.recommended': 'Empfohlen',
+        'add.map.hint': 'Klicke in die Karte, um den Fahrradparkplatz zu markieren. Für Adressen die Suche verwenden.',
+        'add.map.error': 'Bitte einen Ort auf der Karte wählen.',
+        'add.type.error': 'Bitte eine Art des Parkplatzes auswählen.',
+        'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
+      }
+    };
+    const LANGUAGE_STORAGE_KEY = 'velonest-lang';
+    function applyLanguage(lang) {
+      const fallback = translations[lang] ? lang : 'en';
+      document.documentElement.lang = fallback;
+      document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.dataset.i18n; const t = translations[fallback][key]; if (t) el.textContent = t; });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const key = el.dataset.i18nPlaceholder; const t = translations[fallback][key]; if (t) el.setAttribute('placeholder', t); });
+      document.querySelectorAll('.language-button').forEach(btn => { const a = btn.dataset.lang === fallback; btn.classList.toggle('active', a); btn.setAttribute('aria-pressed', a ? 'true' : 'false'); });
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, fallback);
+    }
+    function browserLang() { const list = [...(navigator.languages || []), navigator.language].filter(Boolean).map(l => l.slice(0, 2).toLowerCase()); return list.find(c => translations[c]) || 'en'; }
+
+    function getParam(name) { const u = new URL(window.location.href); return u.searchParams.get(name); }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
+      document.querySelectorAll('.language-button').forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
+
+      const map = L.map('map');
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' });
+      tiles.addTo(map);
+      map.setView([47.3769, 8.5417], 13); // Zurich default
+
+      let marker = null;
+      function setMarker(latlng) {
+        if (marker) { marker.setLatLng(latlng); }
+        else { marker = L.marker(latlng).addTo(map); }
+        updateContinueState();
+        if (window.trackEvent) window.trackEvent('Map', 'add_spot', 'latlng');
+        // clear map error state
+        document.getElementById('map').classList.remove('invalid');
+        document.getElementById('mapError').hidden = true;
+      }
+      map.on('click', (e) => setMarker(e.latlng));
+
+      function updateContinueState() {
+        const type = document.getElementById('type').value;
+        const enabled = !!marker && !!type;
+        const cont = document.getElementById('continue');
+        cont.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+      }
+      const typeEl = document.getElementById('type');
+      typeEl.addEventListener('change', () => {
+        updateContinueState();
+        if (typeEl.value) {
+          typeEl.classList.remove('invalid');
+          typeEl.closest('.field')?.classList.remove('invalid');
+          document.getElementById('typeError').hidden = true;
+        }
+      });
+
+      // Address search via Nominatim
+      const searchInput = document.getElementById('search');
+      const resultsEl = document.getElementById('search-results');
+      async function submitSearch(trigger = 'click') {
+        const q = (searchInput.value || '').trim();
+        if (!q || q.length < 3) { return; }
+        try {
+          const lang = document.documentElement.lang || 'en';
+          const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&addressdetails=1&accept-language=${encodeURIComponent(lang)}&q=${encodeURIComponent(q)}`;
+          const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+          if (!res.ok) throw new Error('geocode_failed');
+          const data = await res.json();
+          if (Array.isArray(data) && data.length) {
+            const item = data[0];
+            const lat = parseFloat(item.lat), lon = parseFloat(item.lon);
+            if (!isNaN(lat) && !isNaN(lon)) {
+              map.setView([lat, lon], 16);
+              setMarker({ lat, lng: lon });
+              if (window.trackEvent) window.trackEvent('Search', 'submit', trigger);
+            }
+          }
+        } catch (e) { /* ignore */ }
+      }
+      document.getElementById('search-btn').addEventListener('click', () => submitSearch('click'));
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); submitSearch('enter'); }
+      });
+
+      document.getElementById('reset').addEventListener('click', () => {
+        if (marker) { map.removeLayer(marker); marker = null; }
+        document.getElementById('spotForm').reset();
+        updateContinueState();
+      });
+
+      document.getElementById('continue').addEventListener('click', (e) => {
+        const contDisabled = document.getElementById('continue').getAttribute('aria-disabled') === 'true';
+        if (contDisabled) {
+          e.preventDefault();
+          // show errors
+          if (!marker) {
+            document.getElementById('map').classList.add('invalid');
+            document.getElementById('mapError').hidden = false;
+          }
+          if (!typeEl.value) {
+            typeEl.classList.add('invalid');
+            typeEl.closest('.field')?.classList.add('invalid');
+            document.getElementById('typeError').hidden = false;
+          }
+          return;
+        }
+        e.preventDefault();
+        const os = getParam('os') || 'unknown';
+        if (window.trackEvent) window.trackEvent('Flow', 'continue_after_map', os);
+        const url = new URL('signup.html', window.location.origin);
+        url.searchParams.set('os', os);
+        window.location.href = url.toString();
+      });
+    });
+  </script>
+</body>
+
+</html>
