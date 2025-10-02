@@ -115,6 +115,7 @@
       form.addEventListener('submit', async (e)=>{
         e.preventDefault();
         const os = getParam('os') || 'unknown';
+        const skip = getParam('skip') === '1';
         const email = (emailInput.value||'').trim().toLowerCase();
 
         // Basic validation + highlight
@@ -131,6 +132,10 @@
 
         const url = new URL('thanks.html', window.location.origin);
         url.searchParams.set('os', os);
+        // mark that the form was completed so it appears in Matomo filters
+        url.searchParams.set('form', '1');
+        // carry over skip flag if user skipped adding a spot
+        if (skip) url.searchParams.set('skip', '1');
         try { localStorage.setItem('velonest-email', email); } catch (e) {}
         window.location.href = url.toString();
       });

@@ -55,8 +55,8 @@
     <section class="form-card">
       <div class="section-header">
         <h1 data-i18n="add.heading">Help VeloNest launch sooner</h1>
-        <p class="muted" data-i18n="add.subheading">The app isn’t live yet because we’re still collecting parking data.
-          Add one spot on the map and share a few details to continue.</p>
+        <p class="muted" data-i18n="add.subheading">Unfortunately, the app is not yet available. We still need more bike
+          spots.</p>
       </div>
       <div class="two-col-grid">
         <div>
@@ -120,9 +120,10 @@
         </form>
       </div>
       <div class="form-actions">
-        <button id="reset" class="button button-secondary" type="button" data-i18n="add.reset">Reset</button>
-        <a id="continue" class="button button-primary" href="#" aria-disabled="true"
-          data-i18n="add.continue">Continue</a>
+        <button id="skip" class="button button-secondary" href="#" data-i18n="add.skip">No, I do not want to add a
+          spot</button>
+        <button id="continue" class="button button-primary" href="#" aria-disabled="true"
+          data-i18n="add.continue">Continue</button>
       </div>
     </section>
   </main>
@@ -137,8 +138,9 @@
     const translations = {
       en: {
         'add.heading': 'Help VeloNest launch sooner',
-        'add.subheading': 'The app isn’t live yet because we’re still collecting parking data. Add one spot on the map and share a few details to continue.',
+        'add.subheading': 'Unfortunately, the app is not yet available. We still need more bike spots. Help us by adding one. You could skip this step if you prefer.',
         'add.reset': 'Reset',
+        'add.skip': 'No, I do not want to add a spot',
         'add.continue': 'Continue',
         'add.type.label': 'Parking type',
         'add.type.placeholder': 'Select type…',
@@ -168,8 +170,9 @@
       },
       de: {
         'add.heading': 'Hilf VeloNest früher zu starten',
-        'add.subheading': 'Die App ist noch nicht live, weil uns Daten fehlen. Setze einen Punkt auf der Karte und ergänze ein paar Details, um fortzufahren.',
+        'add.subheading': 'Leider ist die App noch nicht verfügbar. Wir brauchen noch mehr Fahrradparkplätze. Du kannst uns helfen, indem du einen hinzufügst. Du kannst diesen Schritt auch überspringen, wenn du möchtest.',
         'add.reset': 'Zurücksetzen',
+        'add.skip': 'Nein, ich möchte keinen Ort hinzufügen',
         'add.continue': 'Weiter',
         'add.type.label': 'Art des Parkplatzes',
         'add.type.placeholder': 'Typ auswählen…',
@@ -210,6 +213,7 @@
     function browserLang() { const list = [...(navigator.languages || []), navigator.language].filter(Boolean).map(l => l.slice(0, 2).toLowerCase()); return list.find(c => translations[c]) || 'en'; }
 
     function getParam(name) { const u = new URL(window.location.href); return u.searchParams.get(name); }
+    function on(id, event, handler) { const el = document.getElementById(id); if (el) { el.addEventListener(event, handler); } }
 
     document.addEventListener('DOMContentLoaded', () => {
       applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
@@ -243,7 +247,8 @@
         updateContinueState();
         if (typeEl.value) {
           typeEl.classList.remove('invalid');
-          typeEl.closest('.field')?.classList.remove('invalid');
+          var fld = typeEl.closest && typeEl.closest('.field');
+          if (fld) fld.classList.remove('invalid');
           document.getElementById('typeError').hidden = true;
         }
       });
@@ -271,19 +276,20 @@
           }
         } catch (e) { /* ignore */ }
       }
-      document.getElementById('search-btn').addEventListener('click', () => submitSearch('click'));
-      searchInput.addEventListener('keydown', (e) => {
+      on('search-btn', 'click', () => submitSearch('click'));
+      if (searchInput) searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') { e.preventDefault(); submitSearch('enter'); }
       });
 
-      document.getElementById('reset').addEventListener('click', () => {
+      on('reset', 'click', () => {
         if (marker) { map.removeLayer(marker); marker = null; }
         document.getElementById('spotForm').reset();
         updateContinueState();
       });
 
-      document.getElementById('continue').addEventListener('click', (e) => {
-        const contDisabled = document.getElementById('continue').getAttribute('aria-disabled') === 'true';
+      on('continue', 'click', (e) => {
+        const contEl = document.getElementById('continue');
+        const contDisabled = !contEl || contEl.getAttribute('aria-disabled') === 'true';
         if (contDisabled) {
           e.preventDefault();
           // show errors
@@ -293,7 +299,8 @@
           }
           if (!typeEl.value) {
             typeEl.classList.add('invalid');
-            typeEl.closest('.field')?.classList.add('invalid');
+            var fld2 = typeEl.closest && typeEl.closest('.field');
+            if (fld2) fld2.classList.add('invalid');
             document.getElementById('typeError').hidden = false;
           }
           return;
@@ -303,6 +310,17 @@
         if (window.trackEvent) window.trackEvent('Flow', 'continue_after_map', os);
         const url = new URL('signup.html', window.location.origin);
         url.searchParams.set('os', os);
+        window.location.href = url.toString();
+      });
+
+      // Skip adding a spot and go to email form
+      on('skip', 'click', (e) => {
+        e.preventDefault();
+        const os = getParam('os') || 'unknown';
+        if (window.trackEvent) window.trackEvent('Flow', 'skip_add_spot', os);
+        const url = new URL('signup.html', window.location.origin);
+        url.searchParams.set('os', os);
+        url.searchParams.set('skip', '1');
         window.location.href = url.toString();
       });
     });
