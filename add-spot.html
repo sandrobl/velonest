@@ -16,13 +16,29 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+  <!-- Language bootstrap: set <html lang> early for Klaro -->
+  <script>
+    (function(){
+      try{
+        var key='velonest-lang';
+        var ls=localStorage.getItem(key);
+        var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
+        var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'en');
+        document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
+      }catch(e){}
+    })();
+  </script>
   <!-- Matomo -->
+  <script defer type="text/javascript" src="js/config.js"></script>
+  <script defer type="text/javascript" src="js/klaro.js"></script>
+  <script defer type="text/javascript" src="js/site.js"></script>
   <script>
     var _paq = window._paq = window._paq || [];
+    _paq.push(['requireConsent']);
+    _paq.push(['trackPageView']);
     _paq.push(['enableHeartBeatTimer', 15]);
     _paq.push(['setDocumentTitle', document.title]);
     _paq.push(['enableLinkTracking']);
-    _paq.push(['trackPageView']);
     (function () {
       var u = "https://matomo.2103.ch/";
       _paq.push(['setTrackerUrl', u + 'matomo.php']);
@@ -55,7 +71,8 @@
     <section class="form-card">
       <div class="section-header">
         <h1 data-i18n="add.heading">Add a bike parking spot</h1>
-        <p class="muted" data-i18n="add.subheading">Contribute to the map by adding a reliable bike parking location.</p>
+        <p class="muted" data-i18n="add.subheading">Contribute to the map by adding a reliable bike parking location.
+        </p>
       </div>
       <div class="two-col-grid">
         <div>
@@ -119,13 +136,19 @@
         </form>
       </div>
       <div class="form-actions">
-        <button id="continue" class="button button-primary" href="#" aria-disabled="true" data-i18n="add.continue">Continue</button>
+        <button id="continue" class="button button-primary" href="#" aria-disabled="true"
+          data-i18n="add.continue">Continue</button>
       </div>
     </section>
   </main>
 
   <footer>
     <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
+    <div class="footer-links">
+      <a href="datenschutz.html">Privacy / Datenschutz</a>
+      ·
+      <a href="#" data-klaro="show" data-klaro-modal="1">Cookie settings</a>
+    </div>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

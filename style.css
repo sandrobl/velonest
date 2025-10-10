@@ -485,6 +485,26 @@ footer {
     color: var(--ink-muted);
 }
 
+.footer-links {
+    margin-top: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: var(--primary);
+    text-decoration-thickness: 2px;
+}
+
 main > section {
     scroll-margin-top: 6.5rem;
 }
