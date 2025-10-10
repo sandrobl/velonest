@@ -402,6 +402,20 @@ main {
     justify-content: center;
 }
 
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 980px;
+}
+
+.cta-grid .cta-card {
+    max-width: none;
+}
+
+.cta-grid .form-actions { justify-content: center; }
+
 .cta-card {
     max-width: 720px;
     text-align: center;

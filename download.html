@@ -118,7 +118,7 @@
 
       function goNext(os) {
         if (window.trackEvent) window.trackEvent('OSSelection', 'click', os);
-        const url = new URL('add-spot.html', window.location.origin);
+        const url = new URL('signup.html', window.location.origin);
         url.searchParams.set('os', os);
         window.location.href = url.toString();
       }

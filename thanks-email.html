@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VeloNest — Thank you</title>
   <meta name="description" content="Thanks for your interest in VeloNest. We’ll be in touch soon.">
-  <link rel="canonical" href="/thanks.html">
+  <link rel="canonical" href="/thanks-email.html">
   <link rel="preconnect" href="https://matomo.2103.ch" crossorigin>
   <meta property="og:title" content="VeloNest — Thank you">
   <meta property="og:description" content="We’ll be in touch soon.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
-  <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
     _paq.push(['enableHeartBeatTimer', 15]);
@@ -28,7 +27,6 @@
     })();
     window.trackEvent = function(category, action, name, value){ try { _paq.push(['trackEvent', category, action, name, value]); } catch(e){} };
   </script>
-  <!-- End Matomo Code -->
 </head>
 <body>
   <header class="site-header">
@@ -49,19 +47,13 @@
   <main>
     <section class="cta">
       <div class="cta-card">
-        <h1 data-i18n="thanks.heading">Thank you for your interest!</h1>
-        <p data-i18n="thanks.copy">We’ll email you as soon as VeloNest is available in your area.</p>
+        <h1 data-i18n="thanks.email.heading">Thank you for your interest!</h1>
+        <p data-i18n="thanks.email.copy">We’ll email you as soon as VeloNest is available in your area.</p>
         <p data-i18n="thanks.project">By the way: VeloNest is a student project. We’d love your feedback to help guide what we build next.</p>
+        <div>
+          <iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=WS4mp1YbWk-kEm8HGB9I7pUVEsE2ZhJGgkmHEXGV4DdUOUZQNkM5M0xaUlAyRTVUODRNMkFaVUVCMS4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh; background:white; border-radius: 12px;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+        </div>
         <a class="button button-light" href="index.html" data-i18n="thanks.back">Back to homepage</a>
-      </div>
-    </section>
-    <section class="form-card" aria-labelledby="survey-title">
-      <div class="section-header">
-        <h2 id="survey-title" data-i18n="thanks.survey.title">Quick survey (optional)</h2>
-        <p class="muted" data-i18n="thanks.survey.copy">If you have 1–2 minutes, we’d be grateful if you could answer a few questions.</p>
-      </div>
-      <div>
-        <iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=WS4mp1YbWk-kEm8HGB9I7pUVEsE2ZhJGgkmHEXGV4DdUOUZQNkM5M0xaUlAyRTVUODRNMkFaVUVCMS4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
       </div>
     </section>
   </main>
@@ -73,21 +65,17 @@
   <script>
     const translations = {
       en: {
-        'thanks.heading': 'Thank you for your interest!',
-        'thanks.copy': 'We’ll email you as soon as VeloNest is available in your area.',
+        'thanks.email.heading': 'Thank you for your interest!',
+        'thanks.email.copy': 'We’ll email you as soon as VeloNest is available in your area.',
         'thanks.project': 'By the way: VeloNest is a student project. We’d love your feedback to help guide what we build next.',
         'thanks.back': 'Back to homepage',
-        'thanks.survey.title': 'Quick survey (optional)',
-        'thanks.survey.copy': 'If you have 1–2 minutes, we’d be grateful if you could answer a few questions.',
         'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
       },
       de: {
-        'thanks.heading': 'Danke für dein Interesse!',
-        'thanks.copy': 'Wir melden uns, sobald VeloNest in deiner Region verfügbar ist.',
+        'thanks.email.heading': 'Danke für dein Interesse!',
+        'thanks.email.copy': 'Wir melden uns, sobald VeloNest in deiner Region verfügbar ist.',
         'thanks.project': 'Übrigens: VeloNest ist ein Studienprojekt. Wir freuen uns über dein Feedback, um die App sinnvoll weiterzuentwickeln.',
         'thanks.back': 'Zurück zur Startseite',
-        'thanks.survey.title': 'Kurze Umfrage (optional)',
-        'thanks.survey.copy': 'Wenn du 1–2 Minuten Zeit hast, freuen wir uns über ein paar Antworten.',
         'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
       }
     };
@@ -97,8 +85,9 @@
     document.addEventListener('DOMContentLoaded', ()=>{
       applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
       document.querySelectorAll('.language-button').forEach(btn=>btn.addEventListener('click',()=>applyLanguage(btn.dataset.lang)));
-      if (window.trackEvent) window.trackEvent('Flow', 'complete', 'thanks');
+      if (window.trackEvent) window.trackEvent('Flow', 'complete', 'thanks_email');
     });
   </script>
 </body>
 </html>
+

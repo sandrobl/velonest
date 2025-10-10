@@ -54,9 +54,8 @@
   <main>
     <section class="form-card">
       <div class="section-header">
-        <h1 data-i18n="add.heading">Help VeloNest launch sooner</h1>
-        <p class="muted" data-i18n="add.subheading">Unfortunately, the app is not yet available. We still need more bike
-          spots.</p>
+        <h1 data-i18n="add.heading">Add a bike parking spot</h1>
+        <p class="muted" data-i18n="add.subheading">Contribute to the map by adding a reliable bike parking location.</p>
       </div>
       <div class="two-col-grid">
         <div>
@@ -120,10 +119,7 @@
         </form>
       </div>
       <div class="form-actions">
-        <button id="skip" class="button button-secondary" href="#" data-i18n="add.skip">No, I do not want to add a
-          spot</button>
-        <button id="continue" class="button button-primary" href="#" aria-disabled="true"
-          data-i18n="add.continue">Continue</button>
+        <button id="continue" class="button button-primary" href="#" aria-disabled="true" data-i18n="add.continue">Continue</button>
       </div>
     </section>
   </main>
@@ -137,10 +133,9 @@
   <script>
     const translations = {
       en: {
-        'add.heading': 'Help VeloNest launch sooner',
-        'add.subheading': 'Unfortunately, the app is not yet available. We still need more bike spots. Help us by adding one. You could skip this step if you prefer.',
+        'add.heading': 'Add a bike parking spot',
+        'add.subheading': 'Contribute to the map by adding a reliable bike parking location.',
         'add.reset': 'Reset',
-        'add.skip': 'No, I do not want to add a spot',
         'add.continue': 'Continue',
         'add.type.label': 'Parking type',
         'add.type.placeholder': 'Select type…',
@@ -169,10 +164,9 @@
         'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
       },
       de: {
-        'add.heading': 'Hilf VeloNest früher zu starten',
-        'add.subheading': 'Leider ist die App noch nicht verfügbar. Wir brauchen noch mehr Fahrradparkplätze. Du kannst uns helfen, indem du einen hinzufügst. Du kannst diesen Schritt auch überspringen, wenn du möchtest.',
+        'add.heading': 'Platz hinzufügen',
+        'add.subheading': 'Hilf mit und trage einen verlässlichen Fahrradparkplatz auf der Karte ein.',
         'add.reset': 'Zurücksetzen',
-        'add.skip': 'Nein, ich möchte keinen Ort hinzufügen',
         'add.continue': 'Weiter',
         'add.type.label': 'Art des Parkplatzes',
         'add.type.placeholder': 'Typ auswählen…',
@@ -308,21 +302,33 @@
         e.preventDefault();
         const os = getParam('os') || 'unknown';
         if (window.trackEvent) window.trackEvent('Flow', 'continue_after_map', os);
-        const url = new URL('signup.html', window.location.origin);
+        const url = new URL('thanks-contribute.html', window.location.origin);
         url.searchParams.set('os', os);
+        url.searchParams.set('contrib', '1');
+
+        // Append selected spot data to query for Matomo visibility
+        try {
+          const tl = marker && marker.getLatLng ? marker.getLatLng() : null;
+          const typeVal = (document.getElementById('type').value || '').trim();
+          const capRaw = (document.getElementById('capacity').value || '').trim();
+          const capVal = capRaw ? parseInt(capRaw, 10) : null;
+          const coveredVal = document.getElementById('covered').checked ? '1' : '0';
+          const secVals = Array.from(document.querySelectorAll('input[type="checkbox"][value]:checked')).map(i => i.value);
+          const hasPhoto = (document.getElementById('photo') && document.getElementById('photo').files && document.getElementById('photo').files.length > 0) ? '1' : '0';
+
+          if (typeVal) url.searchParams.set('type', typeVal);
+          if (capVal && !Number.isNaN(capVal)) url.searchParams.set('cap', String(capVal));
+          url.searchParams.set('cov', coveredVal);
+          if (secVals.length) url.searchParams.set('sec', secVals.join(','));
+          if (tl && typeof tl.lat === 'number' && typeof tl.lng === 'number') {
+            url.searchParams.set('lat', tl.lat.toFixed(5));
+            url.searchParams.set('lng', tl.lng.toFixed(5));
+          }
+          if (hasPhoto === '1') url.searchParams.set('photo', '1');
+        } catch (_) { /* ignore */ }
         window.location.href = url.toString();
       });
 
-      // Skip adding a spot and go to email form
-      on('skip', 'click', (e) => {
-        e.preventDefault();
-        const os = getParam('os') || 'unknown';
-        if (window.trackEvent) window.trackEvent('Flow', 'skip_add_spot', os);
-        const url = new URL('signup.html', window.location.origin);
-        url.searchParams.set('os', os);
-        url.searchParams.set('skip', '1');
-        window.location.href = url.toString();
-      });
     });
   </script>
 </body>

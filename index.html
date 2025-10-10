@@ -49,8 +49,6 @@
                     <button type="button" class="language-button active" data-lang="en" aria-pressed="true">EN</button>
                     <button type="button" class="language-button" data-lang="de" aria-pressed="false">DE</button>
                 </div>
-                <a id="download-cta-nav" class="button button-primary" data-i18n="nav.cta" href="download.html">Download
-                    app</a>
             </div>
         </nav>
     </header>
@@ -63,8 +61,8 @@
                 <p class="hero-text" data-i18n="hero.copy">VeloNest shows nearby bicycle parking spots in seconds so you
                     can stop circling the block and start exploring sooner.</p>
                 <div class="hero-actions">
-                    <a id="download-cta" class="button button-primary" data-i18n="hero.primary"
-                        href="download.html">Download the app</a>
+                    <a id="download-cta" class="button button-primary" data-i18n="hero.primary" href="download.html">Download the app</a>
+                    <a id="contribute-cta" class="button button-primary" data-i18n="hero.contribute" href="add-spot.html">Contribute a spot</a>
                     <a class="button button-secondary" data-i18n="hero.secondary" href="#value">Why it matters</a>
                 </div>
             </div>
@@ -150,7 +148,10 @@
                         <li data-i18n="approach.list3">Navigate directly to a reliable spot and save your favorites.
                         </li>
                     </ul>
-                    <a class="button button-light" data-i18n="approach.cta" href="download.html">Get VeloNest</a>
+                    <div class="hero-actions">
+                        <a id="download-cta-approach" class="button button-light" data-i18n="approach.cta" href="download.html">Get VeloNest</a>
+                        <a id="contribute-cta-approach" class="button button-light" data-i18n="approach.contribute" href="add-spot.html">Contribute a spot</a>
+                    </div>
                 </div>
                 <div class="approach-visual">
                     <div class="phone-frame phone--portrait phone--small">
@@ -164,11 +165,21 @@
         </section>
 
         <section class="cta">
-            <div class="cta-card">
-                <h2 data-i18n="cta.heading">Ready to ride smarter?</h2>
-                <p data-i18n="cta.copy">Download VeloNest to find reliable bicycle parking in seconds—wherever you go.
-                </p>
-                <a class="button button-light" data-i18n="cta.button" href="download.html">Download now</a>
+            <div class="cta-grid">
+                <div class="cta-card">
+                    <h2 data-i18n="cta.download.title">Download the app</h2>
+                    <p data-i18n="cta.download.copy">Find reliable bicycle parking in seconds.</p>
+                    <div class="form-actions">
+                        <a id="download-cta-bottom" class="button button-light" data-i18n="cta.download.button" href="download.html">Download now</a>
+                    </div>
+                </div>
+                <div class="cta-card">
+                    <h2 data-i18n="cta.contribute.title">Contribute a spot</h2>
+                    <p data-i18n="cta.contribute.copy">Prefer to contribute? Add a spot to the map.</p>
+                    <div class="form-actions">
+                        <a id="contribute-cta-bottom" class="button button-light" data-i18n="cta.contribute.button" href="add-spot.html">Contribute a spot</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -184,10 +195,12 @@
                 'nav.reviews': 'Reviews',
                 'nav.approach': 'How it works',
                 'nav.cta': 'Download app',
+                'nav.contribute': 'Contribute a spot',
                 'hero.eyebrow': 'Now available · iOS & Android',
                 'hero.heading': 'Find reliable bike parking before you arrive.',
                 'hero.copy': 'VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.',
                 'hero.primary': 'Download the app',
+                'hero.contribute': 'Contribute a spot',
                 'hero.secondary': 'Why it matters',
                 'value.heading': 'Why riders asked for VeloNest',
                 'value.subheading': 'Every minute saved finding a secure spot means more time on the bike.',
@@ -212,9 +225,13 @@
                 'approach.list2': 'See photos, capacity and safety notes at a glance before you arrive.',
                 'approach.list3': 'Navigate directly to a reliable spot and save your favorites.',
                 'approach.cta': 'Get VeloNest',
-                'cta.heading': 'Ready to ride smarter?',
-                'cta.copy': 'Download VeloNest to find reliable bicycle parking in seconds—wherever you go.',
-                'cta.button': 'Download now',
+                'approach.contribute': 'Contribute a spot',
+                'cta.download.title': 'Download the app',
+                'cta.download.copy': 'Download VeloNest to find reliable bicycle parking in seconds—wherever you go.',
+                'cta.download.button': 'Download now',
+                'cta.contribute.title': 'Contribute a spot',
+                'cta.contribute.copy': 'Prefer to contribute? Add a reliable spot to the map and help other riders in your city.',
+                'cta.contribute.button': 'Contribute a spot',
                 'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
             },
             de: {
@@ -222,10 +239,12 @@
                 'nav.reviews': 'Stimmen',
                 'nav.approach': 'So funktioniert es',
                 'nav.cta': 'App herunterladen',
+                'nav.contribute': 'Platz hinzufügen',
                 'hero.eyebrow': 'Jetzt verfügbar · iOS & Android',
                 'hero.heading': 'Finde verlässliche Fahrradparkplätze, bevor du ankommst.',
                 'hero.copy': 'VeloNest zeigt dir in Sekunden nahegelegene Fahrradstellplätze, damit du nicht länger im Kreis fährst, sondern schneller loslegst.',
                 'hero.primary': 'App herunterladen',
+                'hero.contribute': 'Platz hinzufügen',
                 'hero.secondary': 'Warum das wichtig ist',
                 'value.heading': 'Warum Radfahrer VeloNest wollten',
                 'value.subheading': 'Jede gesparte Minute bei der Parkplatzsuche bedeutet mehr Zeit auf dem Rad.',
@@ -250,9 +269,13 @@
                 'approach.list2': 'Sieh Fotos, Kapazität und Sicherheitshinweise schon bevor du ankommst.',
                 'approach.list3': 'Navigiere direkt zu einem verlässlichen Platz und speichere Favoriten.',
                 'approach.cta': 'VeloNest holen',
-                'cta.heading': 'Bereit für smarteres Radfahren?',
-                'cta.copy': 'Lade VeloNest herunter und finde zuverlässige Fahrradparkplätze in Sekunden – überall.',
-                'cta.button': 'Jetzt herunterladen',
+                'approach.contribute': 'Platz hinzufügen',
+                'cta.download.title': 'App herunterladen',
+                'cta.download.copy': 'Lade VeloNest herunter und finde zuverlässige Fahrradparkplätze in Sekunden – überall.',
+                'cta.download.button': 'Jetzt herunterladen',
+                'cta.contribute.title': 'Platz hinzufügen',
+                'cta.contribute.copy': 'Möchtest du beitragen? Füge einen verlässlichen Platz zur Karte hinzu und hilf anderen in deiner Stadt.',
+                'cta.contribute.button': 'Platz hinzufügen',
                 'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
             }
         };
@@ -351,10 +374,15 @@
                 });
             });
 
-            // Track download CTA clicks with Matomo
-            const ctaButtons = [document.getElementById('download-cta'), document.getElementById('download-cta-nav')].filter(Boolean);
-            ctaButtons.forEach(btn => btn.addEventListener('click', () => {
+            // Track CTA clicks with Matomo
+            const downloadIds = ['download-cta', 'download-cta-approach', 'download-cta-bottom'];
+            downloadIds.map(id => document.getElementById(id)).filter(Boolean).forEach(btn => btn.addEventListener('click', () => {
                 if (window.trackEvent) window.trackEvent('CTA', 'click', 'download_app');
+            }));
+
+            const contributeIds = ['contribute-cta', 'contribute-cta-approach', 'contribute-cta-bottom'];
+            contributeIds.map(id => document.getElementById(id)).filter(Boolean).forEach(btn => btn.addEventListener('click', () => {
+                if (window.trackEvent) window.trackEvent('CTA', 'click', 'contribute_spot');
             }));
         });
     </script>

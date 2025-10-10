@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,17 +20,18 @@
     _paq.push(['setDocumentTitle', document.title]);
     _paq.push(['enableLinkTracking']);
     _paq.push(['trackPageView']);
-    (function() {
-      var u="https://matomo.2103.ch/";
-      _paq.push(['setTrackerUrl', u+'matomo.php']);
+    (function () {
+      var u = "https://matomo.2103.ch/";
+      _paq.push(['setTrackerUrl', u + 'matomo.php']);
       _paq.push(['setSiteId', '20']);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+      g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
     })();
-    window.trackEvent = function(category, action, name, value){ try { _paq.push(['trackEvent', category, action, name, value]); } catch(e){} };
+    window.trackEvent = function (category, action, name, value) { try { _paq.push(['trackEvent', category, action, name, value]); } catch (e) { } };
   </script>
   <!-- End Matomo Code -->
 </head>
+
 <body>
   <header class="site-header">
     <nav class="nav">
@@ -49,16 +51,19 @@
   <main>
     <section class="form-card">
       <div class="section-header">
-        <h1 data-i18n="email.heading">One last step</h1>
-        <p class="muted" data-i18n="email.subheading">Enter your email to get notified when VeloNest is ready for your city.</p>
+        <h1 data-i18n="email.heading">VeloNest is not yet available</h1>
+        <p class="muted" data-i18n="email.subheading">Leave your email and we’ll notify you as soon as VeloNest is ready
+          for your city.</p>
       </div>
       <form id="emailForm">
         <label for="email" class="muted" data-i18n="email.label">Email address</label>
-        <input id="email" name="email" type="email" class="input" placeholder="you@example.com" required autocomplete="email">
+        <input id="email" name="email" type="email" class="input" placeholder="you@example.com" required
+          autocomplete="email">
         <div class="form-actions" style="margin-top:1rem">
           <button class="button button-primary" type="submit" data-i18n="email.submit">Notify me</button>
         </div>
-        <p class="muted small-note" style="margin-top:.4rem" data-i18n="email.note">We won’t send spam. You can unsubscribe anytime.</p>
+        <p class="muted small-note" style="margin-top:.4rem" data-i18n="email.note">We won’t send spam. You can
+          unsubscribe anytime.</p>
       </form>
     </section>
   </main>
@@ -70,16 +75,16 @@
   <script>
     const translations = {
       en: {
-        'email.heading': 'One last step',
-        'email.subheading': 'Enter your email to get notified when VeloNest is ready for your city.',
+        'email.heading': 'VeloNest is not yet available',
+        'email.subheading': 'Leave your email and we’ll notify you as soon as VeloNest is ready to download.',
         'email.label': 'Email address',
         'email.submit': 'Notify me',
         'email.note': 'We won’t send spam. You can unsubscribe anytime.',
         'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
       },
       de: {
-        'email.heading': 'Nur noch ein Schritt',
-        'email.subheading': 'Trage deine E-Mail ein, um informiert zu werden, sobald VeloNest in deiner Stadt bereit ist.',
+        'email.heading': 'VeloNest ist leider noch nicht verfügbar',
+        'email.subheading': 'Hinterlasse deine E-Mail, wir melden uns sobald VeloNest bereit ist und heruntergeladen werden kann.',
         'email.label': 'E-Mail-Adresse',
         'email.submit': 'Benachrichtige mich',
         'email.note': 'Kein Spam. Du kannst dich jederzeit abmelden.',
@@ -87,36 +92,36 @@
       }
     };
     const LANGUAGE_STORAGE_KEY = 'velonest-lang';
-    function applyLanguage(lang){
+    function applyLanguage(lang) {
       const fallback = translations[lang] ? lang : 'en';
       document.documentElement.lang = fallback;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{ const key=el.dataset.i18n; const t=translations[fallback][key]; if (t) el.textContent=t; });
-      document.querySelectorAll('.language-button').forEach(btn=>{ const a=btn.dataset.lang===fallback; btn.classList.toggle('active', a); btn.setAttribute('aria-pressed', a?'true':'false'); });
+      document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.dataset.i18n; const t = translations[fallback][key]; if (t) el.textContent = t; });
+      document.querySelectorAll('.language-button').forEach(btn => { const a = btn.dataset.lang === fallback; btn.classList.toggle('active', a); btn.setAttribute('aria-pressed', a ? 'true' : 'false'); });
       localStorage.setItem(LANGUAGE_STORAGE_KEY, fallback);
     }
-    function browserLang(){ const list=[...(navigator.languages||[]),navigator.language].filter(Boolean).map(l=>l.slice(0,2).toLowerCase()); return list.find(c=>translations[c])||'en'; }
-    function getParam(name){ const u=new URL(window.location.href); return u.searchParams.get(name); }
+    function browserLang() { const list = [...(navigator.languages || []), navigator.language].filter(Boolean).map(l => l.slice(0, 2).toLowerCase()); return list.find(c => translations[c]) || 'en'; }
+    function getParam(name) { const u = new URL(window.location.href); return u.searchParams.get(name); }
 
-    async function sha256Hex(input){
+    async function sha256Hex(input) {
       try {
         const enc = new TextEncoder().encode(input);
         const buf = await (window.crypto && crypto.subtle ? crypto.subtle.digest('SHA-256', enc) : Promise.reject());
-        return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-      } catch(e) {
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      } catch (e) {
         return null;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener('DOMContentLoaded', () => {
       applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
-      document.querySelectorAll('.language-button').forEach(btn=>btn.addEventListener('click',()=>applyLanguage(btn.dataset.lang)));
+      document.querySelectorAll('.language-button').forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
       const form = document.getElementById('emailForm');
       const emailInput = document.getElementById('email');
-      form.addEventListener('submit', async (e)=>{
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const os = getParam('os') || 'unknown';
         const skip = getParam('skip') === '1';
-        const email = (emailInput.value||'').trim().toLowerCase();
+        const email = (emailInput.value || '').trim().toLowerCase();
 
         // Basic validation + highlight
         const valid = !!email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -126,20 +131,21 @@
 
         // Send plain email as Matomo UserId (ensure you have a legal basis/consent)
         if (window._paq) {
-          try { _paq.push(['setUserId', email]); } catch(e) {}
+          try { _paq.push(['setUserId', email]); } catch (e) { }
         }
         if (window.trackEvent) window.trackEvent('Email', 'submit', email);
 
-        const url = new URL('thanks.html', window.location.origin);
+        const url = new URL('thanks-email.html', window.location.origin);
         url.searchParams.set('os', os);
         // mark that the form was completed so it appears in Matomo filters
         url.searchParams.set('form', '1');
         // carry over skip flag if user skipped adding a spot
         if (skip) url.searchParams.set('skip', '1');
-        try { localStorage.setItem('velonest-email', email); } catch (e) {}
+        try { localStorage.setItem('velonest-email', email); } catch (e) { }
         window.location.href = url.toString();
       });
     });
   </script>
 </body>
+
 </html>
