@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="style.css">
   <!-- Language bootstrap: set <html lang> early for Klaro -->
   <script>
-    (function(){
-      try{
-        var key='velonest-lang';
-        var ls=localStorage.getItem(key);
-        var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
-        var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'en');
+    (function () {
+      try {
+        var key = 'velonest-lang';
+        var ls = localStorage.getItem(key);
+        var list = [].concat(navigator.languages || [], [navigator.language]).filter(Boolean).map(function (l) { return (l || '').slice(0, 2).toLowerCase(); });
+        var lang = ls && (ls === 'de' || ls === 'en') ? ls : (list.find(function (c) { return c === 'de' || c === 'en'; }) || 'en');
         document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
-      }catch(e){}
+      } catch (e) { }
     })();
   </script>
   <script defer type="text/javascript" src="js/config.js"></script>
@@ -72,6 +72,8 @@
         <p data-i18n="thanks.project">By the way: VeloNest is a student project. We’d love your feedback to help guide
           what we build next.</p>
         <div>
+          <a class="button button-light" href="add-spot.html" data-i18n="thanks.additional-spot">Add additional spot</a>
+          <br><br>
           <iframe width="640px" height="480px"
             src="https://forms.office.com/Pages/ResponsePage.aspx?id=WS4mp1YbWk-kEm8HGB9I7pUVEsE2ZhJGgkmHEXGV4DdUOUZQNkM5M0xaUlAyRTVUODRNMkFaVUVCMS4u&embed=true"
             frameborder="0" marginwidth="0" marginheight="0"
@@ -99,6 +101,7 @@
         'thanks.contrib.copy': 'Your contribution helps other riders find secure parking faster. .',
         'thanks.project': 'By the way: VeloNest is a student project. We’d love your feedback to help guide what we build next.',
         'thanks.back': 'Back to homepage',
+        'thanks.additional-spot': 'Add additional wspot',
         'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
       },
       de: {
@@ -106,6 +109,7 @@
         'thanks.contrib.copy': 'Dein Beitrag hilft anderen, schneller sichere Abstellplätze zu finden. ',
         'thanks.project': 'Übrigens: VeloNest ist ein Studienprojekt. Wir freuen uns über dein Feedback, um die App sinnvoll weiterzuentwickeln.',
         'thanks.back': 'Zurück zur Startseite',
+        'thanks.additional-spot': 'Weiteren Abstellplatz hinzufügen',
         'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
       }
     };
