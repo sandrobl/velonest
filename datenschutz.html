@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datenschutz – VeloNest</title>
-  <meta name="description" content="Informationen zum Datenschutz und zur Verwendung von Matomo (selbst gehostet) auf VeloNest.">
+  <meta name="description"
+    content="Informationen zum Datenschutz und zur Verwendung von Matomo (selbst gehostet) auf VeloNest.">
   <link rel="canonical" href="/datenschutz.html">
   <link rel="preconnect" href="https://matomo.2103.ch" crossorigin>
   <meta property="og:title" content="VeloNest – Datenschutz">
@@ -14,26 +15,23 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Language bootstrap: set <html lang> early for Klaro -->
+  <!-- Language bootstrap: set <html lang> early -->
   <script>
-    (function(){
-      try{
-        var key='velonest-lang';
-        var ls=localStorage.getItem(key);
-        var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
-        var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'de');
+    (function () {
+      try {
+        var key = 'velonest-lang';
+        var ls = localStorage.getItem(key);
+        var list = [].concat(navigator.languages || [], [navigator.language]).filter(Boolean).map(function (l) { return (l || '').slice(0, 2).toLowerCase(); });
+        var lang = ls && (ls === 'de' || ls === 'en') ? ls : (list.find(function (c) { return c === 'de' || c === 'en'; }) || 'de');
         document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
-      }catch(e){}
+      } catch (e) { }
     })();
   </script>
-  <!-- Klaro/Matomo Config & Klaro UI -->
-  <script defer type="text/javascript" src="js/config.js"></script>
-  <script defer type="text/javascript" src="js/klaro.js"></script>
+  <!-- Klaro removed -->
   <script defer type="text/javascript" src="js/site.js"></script>
-  <!-- Matomo Tracker (respektiert Klaro-Einwilligung) -->
+  <!-- Matomo Tracker -->
   <script>
     var _paq = window._paq = window._paq || [];
-    _paq.push(['requireConsent']);
     _paq.push(['trackPageView']);
     _paq.push(['enableHeartBeatTimer', 15]);
     _paq.push(['setDocumentTitle', document.title]);
@@ -52,56 +50,144 @@
   <header class="site-header">
     <nav class="nav">
       <a class="brand" href="index.html">
-        <img src="img/logo.png" alt="VeloNest Logo" />
+        <img src="img/logo.png" alt="VeloNest logo" />
         <span>VeloNest</span>
       </a>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="language-button active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="language-button" data-lang="de" aria-pressed="false">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
   <main>
     <section class="form-card">
       <div class="section-header">
-        <h1>Datenschutz</h1>
-        <p class="muted">Kurz und verständlich: Wofür wir Daten nutzen und wie Sie Ihre Entscheidungen verwalten.</p>
+        <h1 data-i18n="page.title">Datenschutz</h1>
+        <p class="muted" data-i18n="intro.muted">Kurz und verständlich: Wofür wir Daten nutzen und welche Daten anfallen.</p>
       </div>
 
-      <h2>Kurzfassung</h2>
+      <h2 data-i18n="summary.heading">Kurzfassung</h2>
       <ul>
-        <li>Wir verwenden <b>selbst gehostetes Matomo</b>, um Nutzung anonymisiert zu verstehen und die App zu verbessern.</li>
-        <li><b>Keine Werbung</b>, keine Weitergabe an Dritte.</li>
-        <li>Analyse erfolgt nur mit Ihrer <b>Einwilligung (Opt‑in)</b>. Sie können diese jederzeit ändern.</li>
+        <li><span data-i18n="summary.li1">Wir verwenden <b>selbst gehostetes Matomo</b>, um Nutzung zu verstehen und VeloNest zu verbessern.</span></li>
+        <li><span data-i18n="summary.li2"><b>Keine Werbung</b> und keine Weitergabe an Dritte.</span></li>
+        <li><span data-i18n="summary.li3"><b>Kein Personenbezug</b>: Wir verknüpfen keine E‑Mails oder User‑IDs mit der Nutzung.</span></li>
       </ul>
 
-      <h2>Analyse mit Matomo</h2>
-      <p>Wir messen Seitenaufrufe, Klicks und Ladezeiten, um Fehler schneller zu finden und Funktionen zu priorisieren. Die
-        Datenverarbeitung erfolgt auf unseren eigenen Servern in der EU/DE (kein Drittanbieter‑Werbetracking).</p>
-      <p>Wenn Sie zustimmen, kann Matomo Cookies wie <code>_pk_*</code> oder <code>_mtm_*</code> setzen, um wiederkehrende Besuche zu erkennen
-        und Messungen durchzuführen.</p>
-
-      <h2>Rechtsgrundlage</h2>
-      <p>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft
-        widerrufen.</p>
-
-      <h2>Cookie‑Einstellungen</h2>
-      <p>Sie können Ihre Auswahl jederzeit ändern:</p>
+      <h2 data-i18n="matomo.heading">Analyse mit Matomo</h2>
+      <p data-i18n="matomo.purpose">Wir messen Seitenaufrufe, Klicks und Ladezeiten, um Fehler schneller zu finden und Funktionen zu priorisieren. Die Datenverarbeitung erfolgt auf unseren eigenen Servern in der EU/DE (kein Drittanbieter‑Werbetracking).</p>
       <p>
-        <a href="#" data-klaro="show" data-klaro-modal="1" class="button button-secondary">Einstellungen öffnen</a>
+        <span data-i18n="matomo.cookies.before">Matomo kann hierbei First‑Party‑Cookies wie</span>
+        <code>_pk_*</code>
+        <span data-i18n="matomo.cookies.middle">oder</span>
+        <code>_mtm_*</code>
+        <span data-i18n="matomo.cookies.after">setzen, um wiederkehrende Besuche zu erkennen und Messungen durchzuführen.</span>
       </p>
+      <p data-i18n="matomo.no_personal">Es findet kein geräteübergreifendes Werbe‑Tracking, kein Profiling und keine Verknüpfung mit Kontaktangaben (z.&nbsp;B. E‑Mail) statt.</p>
 
-      <h2>Kontakt</h2>
-      <p>Bei Fragen zum Datenschutz schreiben Sie uns bitte über die üblichen Kontaktwege, die in der App bzw. auf der
-        Website genannt sind.</p>
+      <h2 data-i18n="logs.heading">Server‑Logs</h2>
+      <p data-i18n="logs.purpose">Bei jedem Seitenaufruf speichert unser Server automatisch technische Zugriffsdaten (sogenannte Server‑Logs), um Betrieb, Sicherheit und Fehlersuche zu gewährleisten.</p>
+      <ul>
+        <li><span data-i18n="logs.li1">IP‑Adresse (gekürzt/anonymisiert, sofern möglich)</span></li>
+        <li><span data-i18n="logs.li2">Datum und Uhrzeit des Zugriffs, Zeitzone</span></li>
+        <li><span data-i18n="logs.li3">Abgerufene URL, HTTP‑Methode und Statuscode</span></li>
+        <li><span data-i18n="logs.li4">Übertragene Datenmenge</span></li>
+        <li><span data-i18n="logs.li5">Browser/User‑Agent und ggf. Referrer</span></li>
+      </ul>
+      <p data-i18n="logs.retention">Diese Logdaten werden ausschließlich zur Sicherstellung des Betriebs und zur Fehleranalyse verwendet und nach kurzer Frist gelöscht.</p>
+
+      <h2 data-i18n="legal.heading">Rechtsgrundlage</h2>
+      <p data-i18n="legal.basis">Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) an der Stabilität, Sicherheit und Weiterentwicklung unserer Website und Angebote.</p>
+
+
+      <h2 data-i18n="contact.heading">Kontakt</h2>
+      <p data-i18n="contact.p">Bei Fragen zum Datenschutz schreiben Sie uns bitte über die üblichen Kontaktwege, die in der App bzw. auf der Website genannt sind.</p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 VeloNest. Made by cyclists, for cyclists.</p>
+    <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
     <div class="footer-links">
       <a href="datenschutz.html">Privacy / Datenschutz</a>
-      ·
-      <a href="#" data-klaro="show" data-klaro-modal="1">Cookie‑Einstellungen</a>
     </div>
   </footer>
+  <script>
+    const translations = {
+      en: {
+        'page.title': 'Privacy',
+        'intro.muted': 'Short and clear: What we use data for and what data is collected.',
+        'summary.heading': 'Summary',
+        'summary.li1': 'We use self‑hosted Matomo to understand usage and improve VeloNest.',
+        'summary.li2': 'No ads and no data sharing with third parties.',
+        'summary.li3': 'No personal linkage: we do not tie emails or user IDs to usage.',
+        'matomo.heading': 'Analytics with Matomo',
+        'matomo.purpose': 'We measure page views, clicks and load times to find issues faster and prioritize features. Processing happens on our own servers in the EU/DE (no third‑party ad tracking).',
+        'matomo.cookies.before': 'Matomo may set first‑party cookies such as',
+        'matomo.cookies.middle': 'or',
+        'matomo.cookies.after': 'to recognize returning visits and perform measurements.',
+        'matomo.no_personal': 'No cross‑device ad tracking, no profiling, and no linking with contact details (e.g. email).',
+        'logs.heading': 'Server logs',
+        'logs.purpose': 'On each request our server automatically stores technical access data (server logs) to ensure operation, security and debugging.',
+        'logs.li1': 'IP address (shortened/anonymized where possible)',
+        'logs.li2': 'Date and time of access, time zone',
+        'logs.li3': 'Requested URL, HTTP method and status code',
+        'logs.li4': 'Transferred data volume',
+        'logs.li5': 'Browser/User‑Agent and, if available, referrer',
+        'logs.retention': 'These logs are used solely to ensure operation and troubleshoot issues and are deleted after a short period.',
+        'legal.heading': 'Legal basis',
+        'legal.basis': 'Article 6(1)(f) GDPR (legitimate interests) in stability, security and further development of our website and services.',
+        'contact.heading': 'Contact',
+        'contact.p': 'If you have privacy questions, please reach us through the usual contact channels listed in the app and on the website.',
+        'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
+      },
+      de: {
+        'page.title': 'Datenschutz',
+        'intro.muted': 'Kurz und verständlich: Wofür wir Daten nutzen und welche Daten anfallen.',
+        'summary.heading': 'Kurzfassung',
+        'summary.li1': 'Wir verwenden selbst gehostetes Matomo, um Nutzung zu verstehen und VeloNest zu verbessern.',
+        'summary.li2': 'Keine Werbung und keine Weitergabe an Dritte.',
+        'summary.li3': 'Kein Personenbezug: Wir verknüpfen keine E‑Mails oder User‑IDs mit der Nutzung.',
+        'matomo.heading': 'Analyse mit Matomo',
+        'matomo.purpose': 'Wir messen Seitenaufrufe, Klicks und Ladezeiten, um Fehler schneller zu finden und Funktionen zu priorisieren. Die Datenverarbeitung erfolgt auf unseren eigenen Servern in der EU/DE (kein Drittanbieter‑Werbetracking).',
+        'matomo.cookies.before': 'Matomo kann hierbei First‑Party‑Cookies wie',
+        'matomo.cookies.middle': 'oder',
+        'matomo.cookies.after': 'setzen, um wiederkehrende Besuche zu erkennen und Messungen durchzuführen.',
+        'matomo.no_personal': 'Es findet kein geräteübergreifendes Werbe‑Tracking, kein Profiling und keine Verknüpfung mit Kontaktangaben (z. B. E‑Mail) statt.',
+        'logs.heading': 'Server‑Logs',
+        'logs.purpose': 'Bei jedem Seitenaufruf speichert unser Server automatisch technische Zugriffsdaten (sogenannte Server‑Logs), um Betrieb, Sicherheit und Fehlersuche zu gewährleisten.',
+        'logs.li1': 'IP‑Adresse (gekürzt/anonymisiert, sofern möglich)',
+        'logs.li2': 'Datum und Uhrzeit des Zugriffs, Zeitzone',
+        'logs.li3': 'Abgerufene URL, HTTP‑Methode und Statuscode',
+        'logs.li4': 'Übertragene Datenmenge',
+        'logs.li5': 'Browser/User‑Agent und ggf. Referrer',
+        'logs.retention': 'Diese Logdaten werden ausschließlich zur Sicherstellung des Betriebs und zur Fehleranalyse verwendet und nach kurzer Frist gelöscht.',
+        'legal.heading': 'Rechtsgrundlage',
+        'legal.basis': 'Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) an der Stabilität, Sicherheit und Weiterentwicklung unserer Website und Angebote.',
+        'contact.heading': 'Kontakt',
+        'contact.p': 'Bei Fragen zum Datenschutz schreiben Sie uns bitte über die üblichen Kontaktwege, die in der App bzw. auf der Website genannt sind.',
+        'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
+      }
+    };
+    const LANGUAGE_STORAGE_KEY = 'velonest-lang';
+    function applyLanguage(lang) {
+      const fallback = translations[lang] ? lang : 'en';
+      document.documentElement.lang = fallback;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n; const t = translations[fallback][key]; if (t) el.textContent = t;
+      });
+      document.querySelectorAll('.language-button').forEach(btn => {
+        const active = btn.dataset.lang === fallback; btn.classList.toggle('active', active); btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      try { localStorage.setItem(LANGUAGE_STORAGE_KEY, fallback); } catch (e) {}
+    }
+    function browserLang() { const list = [...(navigator.languages || []), navigator.language].filter(Boolean).map(l => l.slice(0, 2).toLowerCase()); return list.find(code => translations[code]) || 'en'; }
+    document.addEventListener('DOMContentLoaded', () => {
+      applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
+      document.querySelectorAll('.language-button').forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
+    });
+  </script>
 </body>
 
 </html>

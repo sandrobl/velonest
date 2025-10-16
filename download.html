@@ -17,24 +17,21 @@
   <link rel="stylesheet" href="style.css">
   <!-- Language bootstrap: set <html lang> early for Klaro -->
   <script>
-    (function(){
-      try{
-        var key='velonest-lang';
-        var ls=localStorage.getItem(key);
-        var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
-        var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'en');
+    (function () {
+      try {
+        var key = 'velonest-lang';
+        var ls = localStorage.getItem(key);
+        var list = [].concat(navigator.languages || [], [navigator.language]).filter(Boolean).map(function (l) { return (l || '').slice(0, 2).toLowerCase(); });
+        var lang = ls && (ls === 'de' || ls === 'en') ? ls : (list.find(function (c) { return c === 'de' || c === 'en'; }) || 'en');
         document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
-      }catch(e){}
+      } catch (e) { }
     })();
   </script>
   <!-- Matomo -->
-  <script defer type="text/javascript" src="js/config.js"></script>
-  <script defer type="text/javascript" src="js/klaro.js"></script>
   <script defer type="text/javascript" src="js/site.js"></script>
 
   <script>
     var _paq = window._paq = window._paq || [];
-    _paq.push(['requireConsent']);
     _paq.push(['trackPageView']);
     _paq.push(['enableHeartBeatTimer', 15]);
     _paq.push(['setDocumentTitle', document.title]);
@@ -74,10 +71,12 @@
         <p class="muted" data-i18n="download.subheading">Choose your Operating system.</p>
       </div>
       <div class="store-badges" role="group" aria-label="App stores">
-        <a id="choose-ios" class="store-badge" href="#" aria-label="Download on the App Store">
+        <a id="choose-ios" class="store-badge" href="thanks-download.html?os=ios"
+          aria-label="Download on the App Store">
           <img src="img/apple_store.svg" alt="Download on the App Store" loading="lazy" height="56">
         </a>
-        <a id="choose-android" class="store-badge" href="#" aria-label="Get it on Google Play">
+        <a id="choose-android" class="store-badge" href="thanks-download.html?os=android"
+          aria-label="Get it on Google Play">
           <img src="img/google-play.png" alt="Get it on Google Play" loading="lazy" height="56">
         </a>
       </div>
@@ -92,7 +91,7 @@
     <div class="footer-links">
       <a href="datenschutz.html">Privacy / Datenschutz</a>
       ·
-      <a href="#" data-klaro="show" data-klaro-modal="1">Cookie settings</a>
+      <!-- Cookie settings removed -->
     </div>
   </footer>
 
@@ -138,14 +137,7 @@
       applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
       document.querySelectorAll('.language-button').forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
 
-      function goNext(os) {
-        if (window.trackEvent) window.trackEvent('OSSelection', 'click', os);
-        const url = new URL('signup.html', window.location.origin);
-        url.searchParams.set('os', os);
-        window.location.href = url.toString();
-      }
-      document.getElementById('choose-ios').addEventListener('click', (e) => { e.preventDefault(); goNext('ios'); });
-      document.getElementById('choose-android').addEventListener('click', (e) => { e.preventDefault(); goNext('android'); });
+      // Buttons are plain links now; no JS navigation or tracking on click.
     });
   </script>
 </body>

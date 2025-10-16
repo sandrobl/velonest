@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VeloNest — Thank you</title>
-  <meta name="description" content="Thanks for your interest in VeloNest. We’ll be in touch soon.">
-  <link rel="canonical" href="/thanks-email.html">
+  <meta name="description"
+    content="Thanks for checking out VeloNest. Share your feedback and optionally leave your contact details.">
+  <link rel="canonical" href="/thanks-download.html">
   <link rel="preconnect" href="https://matomo.2103.ch" crossorigin>
   <meta property="og:title" content="VeloNest — Thank you">
   <meta property="og:description" content="We’ll be in touch soon.">
@@ -15,23 +16,20 @@
   <link rel="stylesheet" href="style.css">
   <!-- Language bootstrap: set <html lang> early for Klaro -->
   <script>
-    (function(){
-      try{
-        var key='velonest-lang';
-        var ls=localStorage.getItem(key);
-        var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
-        var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'en');
+    (function () {
+      try {
+        var key = 'velonest-lang';
+        var ls = localStorage.getItem(key);
+        var list = [].concat(navigator.languages || [], [navigator.language]).filter(Boolean).map(function (l) { return (l || '').slice(0, 2).toLowerCase(); });
+        var lang = ls && (ls === 'de' || ls === 'en') ? ls : (list.find(function (c) { return c === 'de' || c === 'en'; }) || 'en');
         document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
-      }catch(e){}
+      } catch (e) { }
     })();
   </script>
-  <script defer type="text/javascript" src="js/config.js"></script>
-  <script defer type="text/javascript" src="js/klaro.js"></script>
   <script defer type="text/javascript" src="js/site.js"></script>
 
   <script>
     var _paq = window._paq = window._paq || [];
-    _paq.push(['requireConsent']);
     _paq.push(['trackPageView']);
     _paq.push(['enableHeartBeatTimer', 15]);
     _paq.push(['setDocumentTitle', document.title]);
@@ -66,8 +64,9 @@
   <main>
     <section class="cta">
       <div class="cta-card">
-        <h1 data-i18n="thanks.email.heading">Thank you for your interest!</h1>
-        <p data-i18n="thanks.email.copy">We’ll email you as soon as VeloNest is available in your area.</p>
+        <h1 data-i18n="thanks.download.heading">VeloNest isn’t available yet</h1>
+        <p data-i18n="thanks.download.copy">We’re working on it. Please fill out the short form below to share feedback
+          — you can also leave your contact details if you’d like us to follow up.</p>
         <p data-i18n="thanks.project">By the way: VeloNest is a student project. We’d love your feedback to help guide
           what we build next.</p>
         <div>
@@ -87,23 +86,23 @@
     <div class="footer-links">
       <a href="datenschutz.html">Privacy / Datenschutz</a>
       ·
-      <a href="#" data-klaro="show" data-klaro-modal="1">Cookie settings</a>
+      <!-- Cookie settings removed -->
     </div>
   </footer>
 
   <script>
     const translations = {
       en: {
-        'thanks.email.heading': 'Thank you for your interest!',
-        'thanks.email.copy': 'We’ll email you as soon as VeloNest is available in your area.',
+        'thanks.download.heading': 'Thanks for your interest. VeloNest isn’t available yet',
+        'thanks.download.copy': 'We’re working on it. Please fill out the short form below to share feedback — you can also leave your contact details if you’d like us to follow up.',
         'thanks.project': 'By the way: VeloNest is a student project. We’d love your feedback to help guide what we build next.',
         'thanks.back': 'Back to homepage',
         'footer.note': '© 2025 VeloNest. Made by cyclists, for cyclists.'
       },
       de: {
-        'thanks.email.heading': 'Danke für dein Interesse!',
-        'thanks.email.copy': 'Wir melden uns, sobald VeloNest in deiner Region verfügbar ist.',
-        'thanks.project': 'Übrigens: VeloNest ist ein Studienprojekt. Wir freuen uns über dein Feedback, um die App sinnvoll weiterzuentwickeln.',
+        'thanks.download.heading': 'Danke für dein Interesse. VeloNest ist leider noch nicht verfügbar',
+        'thanks.download.copy': 'Wir arbeiten daran. Bitte fülle das kurze Formular unten aus und gib uns Feedback — du kannst optional deine Kontaktdaten hinterlassen, wenn wir dich bei Rückfragen erreichen dürfen.',
+        'thanks.project': 'Übrigens: VeloNest ist ein Studentenprojekt. Wir freuen uns über dein Feedback, um die App sinnvoll weiterzuentwickeln.',
         'thanks.back': 'Zurück zur Startseite',
         'footer.note': '© 2025 VeloNest. Von Radfahrern für Radfahrer.'
       }
@@ -114,7 +113,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       applyLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || browserLang());
       document.querySelectorAll('.language-button').forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.dataset.lang)));
-      if (window.trackEvent) window.trackEvent('Flow', 'complete', 'thanks_email');
+      if (window.trackEvent) window.trackEvent('Flow', 'complete', 'thanks_download');
     });
   </script>
 </body>
