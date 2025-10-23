@@ -79,7 +79,7 @@
                         href="download.html">Download the app</a>
                     <a id="contribute-cta" class="button button-primary" data-i18n="hero.contribute"
                         href="add-spot.html">Contribute a spot</a>
-                    <a class="button button-secondary" data-i18n="hero.secondary" href="#value">Why it matters</a>
+                    <a class="button button-secondary" data-i18n="hero.secondary" href="feedback.html">Not interested? Feedback</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -204,6 +204,21 @@
         </section>
     </main>
 
+    <div class="scroll-controls" role="group" aria-label="Page navigation shortcuts">
+        <button type="button" class="scroll-button scroll-button--down" data-target="#value">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 16.5a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42L12 14.09l5.29-5.3a1 1 0 1 1 1.42 1.42l-6 6a1 1 0 0 1-.71.29Z" />
+            </svg>
+            <span class="sr-only" data-i18n="scroll.down">Scroll for more</span>
+        </button>
+        <button type="button" class="scroll-button scroll-button--up" data-target="#top">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 7.5a1 1 0 0 1 .71.29l6 6a1 1 0 1 1-1.42 1.42L12 9.91l-5.29 5.3a1 1 0 0 1-1.42-1.42l6-6A1 1 0 0 1 12 7.5Z" />
+            </svg>
+            <span class="sr-only" data-i18n="scroll.up">Back to top</span>
+        </button>
+    </div>
+
     <footer>
         <p data-i18n="footer.note">© 2025 VeloNest. Made by cyclists, for cyclists.</p>
         <div class="footer-links">
@@ -226,7 +241,9 @@
                 'hero.copy': 'VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.',
                 'hero.primary': 'Download the app',
                 'hero.contribute': 'Contribute a spot',
-                'hero.secondary': 'Why it matters',
+                'hero.secondary': 'Not interested? Feedback',
+                'scroll.down': 'Scroll for more',
+                'scroll.up': 'Back to top',
                 'value.heading': 'Why riders asked for VeloNest',
                 'value.subheading': 'Every minute saved finding a secure spot means more time on the bike.',
                 'value.card1.title': 'Parking in seconds',
@@ -270,7 +287,9 @@
                 'hero.copy': 'VeloNest zeigt dir in Sekunden nahegelegene Fahrradstellplätze, damit du nicht länger im Kreis fährst, sondern schneller loslegst.',
                 'hero.primary': 'App herunterladen',
                 'hero.contribute': 'Platz beitragen',
-                'hero.secondary': 'Warum das wichtig ist',
+                'hero.secondary': 'Kein Interesse? Feedback',
+                'scroll.down': 'Runterscrollen',
+                'scroll.up': 'Zurück nach oben',
                 'value.heading': 'Warum Radfahrer VeloNest wollten',
                 'value.subheading': 'Jede gesparte Minute bei der Parkplatzsuche bedeutet mehr Zeit auf dem Rad.',
                 'value.card1.title': 'Parkplätze in Sekunden',
@@ -310,6 +329,23 @@
             .map((link) => document.querySelector(link.getAttribute('href')))
             .filter(Boolean);
 
+        let scrollDownButton = null;
+        let scrollUpButton = null;
+
+        const updateScrollButtons = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+
+            if (scrollDownButton) {
+                const showDown = scrollTop < 40;
+                scrollDownButton.classList.toggle('is-visible', showDown);
+            }
+
+            if (scrollUpButton) {
+                const showUp = scrollTop > 200;
+                scrollUpButton.classList.toggle('is-visible', showUp);
+            }
+        };
+
         const clearActive = () => navLinks.forEach((link) => link.classList.remove('active'));
 
         const setActiveLink = (id) => {
@@ -342,6 +378,8 @@
             } else {
                 clearActive();
             }
+
+            updateScrollButtons();
         };
 
         const rafHandleScroll = () => window.requestAnimationFrame(handleScroll);
@@ -350,6 +388,44 @@
         document.addEventListener('DOMContentLoaded', () => {
             const languageButtons = document.querySelectorAll('.language-button');
             const translatableElements = document.querySelectorAll('[data-i18n]');
+            const scrollControls = document.querySelector('.scroll-controls');
+
+            scrollDownButton = scrollControls?.querySelector('.scroll-button--down') || null;
+            scrollUpButton = scrollControls?.querySelector('.scroll-button--up') || null;
+
+            const scrollToTarget = (selector) => {
+                if (!selector) return;
+                if (selector === '#top') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                const el = document.querySelector(selector);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            const updateScrollAriaLabels = (lang) => {
+                const fallbackLang = translations[lang] ? lang : 'en';
+                const downLabel = translations[fallbackLang]?.['scroll.down'] || 'Scroll for more';
+                const upLabel = translations[fallbackLang]?.['scroll.up'] || 'Back to top';
+                if (scrollDownButton) scrollDownButton.setAttribute('aria-label', downLabel);
+                if (scrollUpButton) scrollUpButton.setAttribute('aria-label', upLabel);
+            };
+
+            if (scrollDownButton) {
+                scrollDownButton.addEventListener('click', () => {
+                    scrollToTarget(scrollDownButton.dataset.target);
+                    if (window.trackEvent) window.trackEvent('Navigation', 'scroll', 'down');
+                });
+            }
+
+            if (scrollUpButton) {
+                scrollUpButton.addEventListener('click', () => {
+                    scrollToTarget(scrollUpButton.dataset.target);
+                    if (window.trackEvent) window.trackEvent('Navigation', 'scroll', 'up');
+                });
+            }
 
             const applyLanguage = (lang) => {
                 const fallbackLang = translations[lang] ? lang : 'en';
@@ -382,11 +458,13 @@
 
             const storedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY) || getBrowserLanguage();
             applyLanguage(storedLang);
+            updateScrollAriaLabels(storedLang);
 
             languageButtons.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
                     applyLanguage(lang);
+                    updateScrollAriaLabels(lang);
                 });
             });
 
@@ -409,6 +487,8 @@
             contributeIds.map(id => document.getElementById(id)).filter(Boolean).forEach(btn => btn.addEventListener('click', () => {
                 if (window.trackEvent) window.trackEvent('CTA', 'click', 'contribute_spot');
             }));
+
+            updateScrollButtons();
         });
     </script>
 </body>
