@@ -17,18 +17,18 @@
     <link rel="stylesheet" href="style.css">
     <!-- Language bootstrap: set <html lang> early for Klaro -->
     <script>
-        (function(){
-            try{
-                var key='velonest-lang';
-                var ls=localStorage.getItem(key);
-                var list=[].concat(navigator.languages||[], [navigator.language]).filter(Boolean).map(function(l){return (l||'').slice(0,2).toLowerCase();});
-                var lang = ls && (ls==='de'||ls==='en') ? ls : (list.find(function(c){return c==='de'||c==='en';})||'en');
+        (function () {
+            try {
+                var key = 'velonest-lang';
+                var ls = localStorage.getItem(key);
+                var list = [].concat(navigator.languages || [], [navigator.language]).filter(Boolean).map(function (l) { return (l || '').slice(0, 2).toLowerCase(); });
+                var lang = ls && (ls === 'de' || ls === 'en') ? ls : (list.find(function (c) { return c === 'de' || c === 'en'; }) || 'en');
                 document.documentElement.lang = lang; window.__VELONEST_LANG__ = lang;
-            }catch(e){}
+            } catch (e) { }
         })();
     </script>
     <!-- Matomo -->
-  <script defer type="text/javascript" src="js/site.js"></script>
+    <script defer type="text/javascript" src="js/site.js"></script>
 
     <script>
         var _paq = window._paq = window._paq || [];
@@ -79,7 +79,8 @@
                         href="download.html">Download the app</a>
                     <a id="contribute-cta" class="button button-primary" data-i18n="hero.contribute"
                         href="add-spot.html">Contribute a spot</a>
-                    <a class="button button-secondary" data-i18n="hero.secondary" href="feedback.html">Not interested? Feedback</a>
+                    <a class="button button-secondary" data-i18n="hero.secondary" href="feedback.html">Not interested?
+                        Please tell us why</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -204,20 +205,23 @@
         </section>
 
         <div class="cta-followup">
-            <a class="button button-secondary" href="feedback.html" data-i18n="cta.followup">Not interested? Tell us why</a>
+            <a class="button button-secondary" href="feedback.html" data-i18n="cta.followup">Not interested? Tell us
+                why</a>
         </div>
     </main>
 
     <div class="scroll-controls" role="group" aria-label="Page navigation shortcuts">
         <button type="button" class="scroll-button scroll-button--down" data-target="#value">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 16.5a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42L12 14.09l5.29-5.3a1 1 0 1 1 1.42 1.42l-6 6a1 1 0 0 1-.71.29Z" />
+                <path
+                    d="M12 16.5a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42L12 14.09l5.29-5.3a1 1 0 1 1 1.42 1.42l-6 6a1 1 0 0 1-.71.29Z" />
             </svg>
             <span class="sr-only" data-i18n="scroll.down">Scroll for more</span>
         </button>
         <button type="button" class="scroll-button scroll-button--up" data-target="#top">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 7.5a1 1 0 0 1 .71.29l6 6a1 1 0 1 1-1.42 1.42L12 9.91l-5.29 5.3a1 1 0 0 1-1.42-1.42l6-6A1 1 0 0 1 12 7.5Z" />
+                <path
+                    d="M12 7.5a1 1 0 0 1 .71.29l6 6a1 1 0 1 1-1.42 1.42L12 9.91l-5.29 5.3a1 1 0 0 1-1.42-1.42l6-6A1 1 0 0 1 12 7.5Z" />
             </svg>
             <span class="sr-only" data-i18n="scroll.up">Back to top</span>
         </button>
@@ -245,7 +249,7 @@
                 'hero.copy': 'VeloNest shows nearby bicycle parking spots in seconds so you can stop circling the block and start exploring sooner.',
                 'hero.primary': 'Download the app',
                 'hero.contribute': 'Contribute a spot',
-                'hero.secondary': 'Not interested? Feedback',
+                'hero.secondary': 'Not interested? Please tell us why',
                 'scroll.down': 'Scroll for more',
                 'scroll.up': 'Back to top',
                 'value.heading': 'Why riders asked for VeloNest',
@@ -292,7 +296,7 @@
                 'hero.copy': 'VeloNest zeigt dir in Sekunden nahegelegene Fahrradstellplätze, damit du nicht länger im Kreis fährst, sondern schneller loslegst.',
                 'hero.primary': 'App herunterladen',
                 'hero.contribute': 'Platz beitragen',
-                'hero.secondary': 'Kein Interesse? Feedback',
+                'hero.secondary': 'Nicht interessiert? Bitte gib uns Feedback, warum',
                 'scroll.down': 'Runterscrollen',
                 'scroll.up': 'Zurück nach oben',
                 'value.heading': 'Warum Radfahrer VeloNest wollten',
