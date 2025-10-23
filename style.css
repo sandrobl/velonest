@@ -500,6 +500,16 @@ main {
     color: rgba(255, 255, 255, 0.9);
 }
 
+.cta-followup {
+    margin: 2.5rem auto 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-followup .button {
+    min-width: 280px;
+}
+
 /* Reviews */
 .review-card {
     background: var(--surface);
@@ -683,6 +693,14 @@ main > section + section {
     .scroll-button {
         width: 48px;
         height: 48px;
+    }
+
+    .cta-followup {
+        margin-top: 2rem;
+    }
+
+    .cta-followup .button {
+        width: 100%;
     }
 }
 .store-badges { display:flex; align-items:center; gap: 0.75rem; flex-wrap: wrap; }
