@@ -165,7 +165,6 @@ main {
     border-radius: 999px;
     padding: 0.85rem 1.6rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    white-space: nowrap;
     border: none;
     appearance: none;
     -webkit-appearance: none;
@@ -701,6 +700,11 @@ main > section + section {
 
     .cta-followup .button {
         width: 100%;
+    }
+
+    .button {
+        white-space: normal;
+        text-align: center;
     }
 }
 .store-badges { display:flex; align-items:center; gap: 0.75rem; flex-wrap: wrap; }
